@@ -1,0 +1,40 @@
+{% extends 'BaseUI/BaseWeb/base.html' %}
+{% load staticfiles %}
+{% load widget_tweaks %}
+
+{% block title %}Home{% endblock %}
+
+{% block library %}
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+{% endblock %}
+
+{% block navbar %}
+    <a class="login" data-toggle="tooltip" data-placement="bottom" title="Sign In"><i class="fa fa-sign-out"></i></a>
+    <a class="active" href="{% url 'home' %}" data-toggle="tooltip" data-placement="bottom" title="Home"><i class="fa fa-home"></i></a>
+{% endblock %}
+
+{% block content %}
+        <div class="index-normal">
+            <div id="index-text">
+                <h1>Fast More. Exactly More.</h1>
+                <h3>Inspection As Service helps millions of administrators,<br> businesses and users  in monitoring, maintaining<br> and replacing facilities immediately</h3><br>
+                <h4>Create your free account</h4>
+            </div>
+            <dv><br><br></dv>
+
+            <button class="index-red-btn" onclick="location.href='{% url 'citizenHome' %}'"><i class="fa fa-group" >&emsp;I'm Citizen</i></button>
+            <button class="index-btn" ><i class="fa fa-gear">&emsp;I'm Business</i></button>
+            <button class="index-btn" ><i class="fa fa-bank">&emsp;I'm Management</i></button>
+
+        </div>
+{% endblock %}
+
+
+
+{#            <div id="index-menu">#}
+{#                <ul style="margin-right: 420px">#}
+{#                    <li><a href="#" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal1" style="color: white" >I'm Management </a> </li>#}
+{#                    <li><a href="#" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal2" style="color: white">I'm Business </a> </li>#}
+{#                    <li><a style="background: red; color: white" href="{% url 'citizenHome' %}" class="btn btn-info btn-lg"  data-toggle="modal"  >I'm Citizen </a>#}
+{#                </ul>#}
+{#            </div>#}

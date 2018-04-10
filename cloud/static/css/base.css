@@ -1,0 +1,99 @@
+/* Sticky footer styles
+-------------------------------------------------- */
+body {margin:0;}
+
+.header {
+  overflow: hidden;
+  background-color: #0204ff;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 70px;
+}
+
+.header a {
+    float: right;
+    width: 6%;
+    height: 72px;
+    text-align: center;
+    padding: 12px 0;
+    transition: all 0.3s ease;
+    color: white;
+    font-size: 36px;
+}
+
+.header img{
+    padding-left: 40px;
+    padding-top: 40px;
+}
+
+.header a:hover {
+    background-color: #000000;
+}
+
+.active {
+    background-color: #4CAF50 !important;
+}
+
+.login {
+  background-color: #f55a10 !important;
+}
+
+.footer {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   height: 40px;
+   background-color: #0204ff;
+   color: #dff0d8;
+   text-align: center;
+   padding-top: 10px;
+}
+
+.tab{
+    display: none;
+}
+
+/* Make circles that indicate the steps of the form: */
+.step {
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbbbbb;
+  border: none;
+  border-radius: 50%;
+  display: inline-block;
+  opacity: 0.5;
+}
+
+.step.active {
+  opacity: 1;
+}
+
+/* Mark the steps that are finished and valid: */
+.step.finish {
+  background-color: #4CAF50;
+}
+
+input.invalid {
+  background-color: #ffdddd;
+}
+
+button {
+  background-color: #4CAF50;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 17px;
+  font-family: Raleway;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+#prevBtn {
+  background-color: #bbbbbb;
+}

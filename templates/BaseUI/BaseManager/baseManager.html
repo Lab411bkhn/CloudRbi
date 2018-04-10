@@ -1,0 +1,17 @@
+{% extends 'BaseUI/BaseWeb/base.html' %}
+{% load staticfiles %}
+{% load static %}
+
+{% block library %}
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+{% endblock %}
+{% block title %}Management{% endblock %}
+
+{% block navbar %}
+    <a class="login" href="#" data-toggle="tooltip" data-placement="bottom" title="Sign Out"><i class="fa fa-sign-out"></i></a>
+    <a href="#" data-toggle="tooltip" data-placement="bottom" title="Profile"><i class="fa fa-user"></i></a>
+    <a href="#" data-toggle="tooltip" data-placement="bottom" title="Help"><i class="fa fa-question"></i></a>
+    <a href="#" data-toggle="tooltip" data-placement="bottom" title="Blog"><i class="fa fa-globe"></i></a>
+    <a href="#" data-toggle="tooltip" data-placement="bottom" title="Messages"><i class="fa fa-envelope"></i></a>
+    <a class="active" href="{% url 'home' %}" data-toggle="tooltip" data-placement="bottom" title="Home"><i class="fa fa-home"></i></a>
+{% endblock %}

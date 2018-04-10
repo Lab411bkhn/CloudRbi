@@ -1,0 +1,16 @@
+{% extends 'BaseUI/BaseFacility/baseBusiness.html' %}
+{% load staticfiles %}
+{% load static %}
+
+{% block title %}Facility Management{% endblock %}
+
+{% block vertical %}
+    <div class="vertical-menu">
+        <a class="active">Facility<br>Management</a>
+        <a href="{% block listfaci %}{% endblock %}"><i class="fa fa-list">&emsp;List of Facilities</i></a>
+        <a href="{% block newfaci %}{% endblock %}"><i class="fa fa-building">&emsp;New Facility</i></a>
+        <a href="{% block design %}{% endblock %}"><i class="fa fa-barcode">&emsp;Design Code</i></a>
+        <a href="{% block manu %}{% endblock %}"><i class="fa fa-cubes">&emsp;Manufacture</i></a>
+    </div>
+{% endblock %}
+

@@ -1,0 +1,20 @@
+{% extends 'BaseUI/BaseWeb/base.html' %}
+{% load staticfiles %}
+{% load static %}
+
+{% block library %}
+    <link rel="stylesheet" href="{% static '/css/404.css' %}">
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+{% endblock %}
+
+{% block title %}404 Error!{% endblock %}
+
+{% block navbar %}
+    <a class="active" href="{% url 'home' %}" data-toggle="tooltip" data-placement="bottom" title="Home"><i class="fa fa-home"></i></a>
+{% endblock %}
+
+{% block content %}
+        <div class="img-div">
+            <img src="{% static 'image/404/image2017-2-8+17_46_36.png' %}" class="img">
+        </div>
+{% endblock %}
