@@ -7,9 +7,9 @@
 {% block vertical %}
     <div class="vertical-menu">
         <a class="active">Risk<br>Summary</a>
-        <a href="#"><i class="fa fa-bomb">&emsp;Probability of<br>&emsp;&emsp; Failure</i></a>
-        <a href="#"><i class="fa fa-money">&emsp;Consequence of<br>&emsp;&emsp; Failure</i></a>
-        <a href="#"><i class="fa fa fa-th">&emsp;Risk Matrix</i></a>
-        <a href="#"><i class="fa fa-arrow-left">&emsp;Back to Proposal</i></a>
+        <a href="{% block pof %}{% endblock %}"><i class="fa fa-bomb">&emsp;Probability of<br>&emsp;&emsp; Failure</i></a>
+        <a href="{% block ca%}{% endblock %}"><i class="fa fa-money">&emsp;Consequence of<br>&emsp;&emsp; Failure</i></a>
+        <a href="{% block matrix %}{% endblock %}"><i class="fa fa fa-th">&emsp;Risk Matrix</i></a>
+        <a href="{% block backProposal %}{% endblock %}"><i class="fa fa-arrow-left">&emsp;Back to Proposal</i></a>
     </div>
 {% endblock %}

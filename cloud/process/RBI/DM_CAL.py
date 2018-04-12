@@ -458,7 +458,7 @@ class DM_CAL:
 
     # Calculate Caustic:
     def plotinArea(self):
-        if (self.MAX_OP_TEMP < 75):
+        if (self.MAX_OP_TEMP < 80):
             k = 'A'
         else:
             k = 'B'

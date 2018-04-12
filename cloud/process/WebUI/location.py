@@ -24,8 +24,8 @@ def locat(DamageFactor, FinancialCost):
         data['y'] = int(round(300 - DamageFactor*1.25,0))
     elif DamageFactor <= 1000:
         data['y'] = int(round(200 - 0.1*DamageFactor,0))
-    elif DamageFactor <= 100000:
-        data['y'] = int(round(100- 0.001*DamageFactor,0))
+    elif DamageFactor <= 10000:
+        data['y'] = int(round(100- 0.01*DamageFactor,0))
     else:
         data['y'] = 0
     return data

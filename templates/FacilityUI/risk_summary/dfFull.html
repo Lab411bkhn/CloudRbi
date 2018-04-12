@@ -1,0 +1,141 @@
+{% extends 'BaseUI/BaseFacility/baseRiskSummary.html' %}
+
+{% load staticfiles %}
+
+<!----------------BLOCK MENU--------------->
+{% block pof %}{% url 'damgeFactor' proposalID %}{% endblock %}
+{% block ca%}#{% endblock %}
+{% block matrix %}{% url 'riskMatrix' proposalID %}{% endblock %}
+{% block backProposal %}{% url 'proposalDisplay' assess.componentid_id %}{% endblock %}
+<!---------------END BLOCK--------------->
+
+{% block data-content %}
+<form method="post">
+    {% csrf_token %}
+    <div class="input-data">
+        <fieldset class="scheduler-border">
+            <!-----------BLOCK DATA GENERAL FACTOR---------->
+            <fieldset class="scheduler-border">
+                <legend class="scheduler-border"><b>Initial Factor</b></legend>
+                <div class="row">
+                    <div class="col-md-6">Thinning Type:</div>
+                    <div class="col-md-6"><select class="form-control">
+                        <option>Local</option>
+                        <option>General</option>
+                    </select></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">Total Generic Frequence:</div>
+                    <div class="col-md-6">{{ obj.gfftotal }}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">Factor of Management System:</div>
+                    <div class="col-md-6">{{ obj.fms }}</div>
+                </div>
+            </fieldset>
+            <!----------------END BLOCK----------------->
+
+            <!-------------- BLOCK DETAIL DAMAGE FACTOR ------------>
+            <fieldset class="scheduler-border">
+                <legend class="scheduler-border"><b>Damage Factors and Probability of Failure</b></legend>
+
+                <div class="row">
+                    <div class="col-md-6">Assessment Periods</div>
+                    <div class="col-md-2">0<br>months</div>
+                    <div class="col-md-2">36 months</div>
+                    <div class="col-md-2">72 months</div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">Governing Thinning Damage Factor:</div>
+                    <div class="col-md-2">{{ obj.thinningap1 }}</div>
+                    <div class="col-md-2">{{ obj.thinningap2 }}</div>
+                    <div class="col-md-2">{{ obj.thinningap3 }}</div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">Governing Stress Corrosion Cracking Damage Factor:</div>
+                    <div class="col-md-2">{{ obj.sccap1 }}</div>
+                    <div class="col-md-2">{{ obj.sccap2 }}</div>
+                    <div class="col-md-2">{{ obj.sccap3 }}</div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">Governing External Damage Factor:</div>
+                    <div class="col-md-2">{{ obj.externalap1 }}</div>
+                    <div class="col-md-2">{{ obj.externalap2 }}</div>
+                    <div class="col-md-2">{{ obj.externalap3 }}</div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">High Temperature Hydrogen Attack Damage Factor:</div>
+                    <div class="col-md-2">{{ obj.htha_ap1 }}</div>
+                    <div class="col-md-2">{{ obj.htha_ap2 }}</div>
+                    <div class="col-md-2">{{ obj.htha_ap3 }}</div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">Governing Brittle Fracture Damage Factor:</div>
+                    <div class="col-md-2">{{ obj.brittleap1 }}</div>
+                    <div class="col-md-2">{{ obj.brittleap2 }}</div>
+                    <div class="col-md-2">{{ obj.brittleap3 }}</div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">Piping Mechanical Fatigue Damage Factor:</div>
+                    <div class="col-md-2">{{ obj.fatigueap1 }}</div>
+                    <div class="col-md-2">{{ obj.fatigueap2 }}</div>
+                    <div class="col-md-2">{{ obj.fatigueap3 }}</div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">Other Damage Factor:</div>
+                    <div class="col-md-2">0.0</div>
+                    <div class="col-md-2">0.0</div>
+                    <div class="col-md-2">0.0</div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">Total Damage Factor with General Thinning:</div>
+                    <div class="col-md-2">{{ obj.thinninggeneralap1 }}</div>
+                    <div class="col-md-2">{{ obj.thinninggeneralap2 }}</div>
+                    <div class="col-md-2">{{ obj.thinninggeneralap3 }}</div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">Total Damage Factor with Local Thinning:</div>
+                    <div class="col-md-2">{{ obj.thinninglocalap1 }}</div>
+                    <div class="col-md-2">{{ obj.thinninglocalap2 }}</div>
+                    <div class="col-md-2">{{ obj.thinninglocalap3 }}</div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">Final Total Damage Factor:</div>
+                    <div class="col-md-2">{{ obj.totaldfap1 }}</div>
+                    <div class="col-md-2">{{ obj.totaldfap2 }}</div>
+                    <div class="col-md-2">{{ obj.totaldfap3 }}</div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">Probability of Failure:</div>
+                    <div class="col-md-2">{{ obj.pofap1 }}</div>
+                    <div class="col-md-2">{{ obj.pofap2 }}</div>
+                    <div class="col-md-2">{{ obj.pofap3 }}</div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">Probability of Failure Category:</div>
+                    <div class="col-md-2">{{ obj.pofap1category }}</div>
+                    <div class="col-md-2">{{ obj.pofap2category }}</div>
+                    <div class="col-md-2">{{ obj.pofap3category }}</div>
+                </div>
+            </fieldset>
+            <!----------------END BLOCK ------------------------->
+        </fieldset>
+        <br>
+        <div class="row">
+            <div class="col-md-12" style="text-align: right"><button type="submit" class="btn btn-primary">Submit</button></div>
+        </div>
+    </div>
+</form>
+{% endblock %}

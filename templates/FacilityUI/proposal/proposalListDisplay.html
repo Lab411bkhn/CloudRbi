@@ -1,6 +1,16 @@
 {% extends 'BaseUI/BaseFacility/baseProposal.html' %}
 
-
+<!----------BLOCK MENU----------->
+{% block listProposal %}{% url 'proposalDisplay' componentID %}{% endblock %}
+{% block newProposal %}
+    {% if istank %}
+        {% url 'tankNew' componentID %}
+    {% else %}
+        {% url 'proposalNew' componentID %}
+    {% endif %}
+{% endblock %}
+{% block backComp %}{% url 'componentDisplay' equipmentID %}{% endblock %}
+<!----------END BLOCK----------->
 
 {% block data-content %}
     <form method="post">
@@ -16,7 +26,7 @@
                         <th width="200px" style="text-align: center"><i class="fa fa-bomb"></i>&ensp;Damage Factor</th>
                         <th width="200px" style="text-align: center"><i class="fa fa-money"></i>&ensp;Financial Cost</th>
                         <th width="200px" style="text-align: center"><i class="fa fa-bank"></i>&ensp;Risk ($/yr)</th>
-                        <th width="200px" style="text-align: center"><i class="fa fa-calendar-o"></i>&ensp;Last Insp</th>
+                        <th width="200px" style="text-align: center"><i class="fa fa-calendar-o"></i>&ensp;Assessment Date</th>
                         <th width="200px" style="text-align: center"><i class="fa fa-calendar-o"></i>&ensp;Insp Due Date</th>
                     </tr>
                 </thead>
@@ -25,7 +35,7 @@
                     {% for a in obj %}
                     <tr>
                         <td style="text-align: center"><input type="checkbox" name="{{ a.id }}"></td>
-                        <td style="text-align: center"><a href="#">{{ a.name }}</a></td>
+                        <td style="text-align: center"><a href="{% url 'damgeFactor' a.id %}">{{ a.name }}</a></td>
                         <td style="text-align: center">{{ a.df }}</td>
                         <td style="text-align: center">{{ a.fc }}</td>
                         <td style="text-align: center">{{ a.risk }}</td>

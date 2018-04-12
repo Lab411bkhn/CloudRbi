@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path
 from cloud import views
 from django.conf.urls import handler404
+from django.conf.urls import handler500
 import django.views.static
 from RbiCloud import settings
 
@@ -51,7 +52,11 @@ urlpatterns = [
     path('component/<int:componentID>/edit/', views.EditComponent, name='componentEdit'),
     path('proposal/display/<int:componentID>/', views.ListProposal, name='proposalDisplay'),
     path('proposal/<int:componentID>/new/', views.NewProposal, name='proposalNew'),
-    path('tank/<int:componentID>/new/', views.NewTank , name='tanlNew'),
-    path('demo/', views.demo),
+    path('tank/<int:componentID>/new/', views.NewTank , name='tankNew'),
+    path('proposal/<int:proposalID>/edit/', views.EditProposal, name='prosalEdit'),
+    path('tank/<int:proposalID>/edit/', views.EditTank, name='tankEdit'),
+    path('proposal/<int:proposalID>/risk-matrix/', views.RiskMatrix, name='riskMatrix'),
+    path('proposal/<int:proposalID>/damage-factor/', views.FullyDamageFactor, name='damgeFactor'),
 ]
-# handler404 = 'cloud.views.handler404'
+handler404 = 'cloud.views.handler404'
+handler500 = 'cloud.views.handler404'
