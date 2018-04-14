@@ -1,4 +1,3 @@
-from operator import eq
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render, redirect
 from django.http import Http404
@@ -1157,7 +1156,7 @@ def NewTank(request, componentID):
         datafaci = models.Facility.objects.get(facilityid= eq.facilityid_id)
         data={}
         isshell = False
-        if comp.componenttypeid_id == 8 or comp.componenttypeid_id == 38:
+        if comp.componenttypeid_id == 8 or comp.componenttypeid_id == 14:
             isshell = True
         if request.method =='POST':
             # Data Assessment
@@ -2690,7 +2689,7 @@ def EditTank(request, proposalID):
         datafaci = models.Facility.objects.get(facilityid= eq.facilityid_id)
         data={}
         isshell = False
-        if comp.componenttypeid_id == 8 or comp.componenttypeid_id == 38:
+        if comp.componenttypeid_id == 8 or comp.componenttypeid_id == 14:
             isshell = True
         if request.method =='POST':
             # Data Assessment
@@ -3512,7 +3511,7 @@ def RiskMatrix(request, proposalID):
         else:
             isTank = 0
 
-        if component.componenttypeid_id == 8:
+        if component.componenttypeid_id == 8 or component.componenttypeid_id == 14:
             isShell = 1
         else:
             isShell = 0
@@ -3535,10 +3534,11 @@ def FullyDamageFactor(request, proposalID):
             isTank = 1
         else:
             isTank = 0
-        if component.componenttypeid_id == 8:
+        if component.componenttypeid_id == 8 or component.componenttypeid_id == 14:
             isShell = 1
         else:
             isShell = 0
+        data['thinningType'] = df.thinningtype
         data['gfftotal'] = df.gfftotal
         data['fms'] = df.fms
         data['thinningap1'] = roundData.roundDF(df.thinningap1)
@@ -3574,7 +3574,102 @@ def FullyDamageFactor(request, proposalID):
         data['pofap1category'] = df.pofap1category
         data['pofap2category'] = df.pofap2category
         data['pofap3category'] = df.pofap3category
-    except:
+    except Exception as e:
+        print(e)
         raise Http404
     return render(request, 'FacilityUI/risk_summary/dfFull.html', {'obj':data, 'assess': rwAss, 'isTank': isTank,
                                                                    'isShell': isShell, 'proposalID':proposalID})
+def FullyConsequence(request, proposalID):
+    data = {}
+    try:
+        rwAss = models.RwAssessment.objects.get(id=proposalID)
+        component = models.ComponentMaster.objects.get(componentid=rwAss.componentid_id)
+        if component.componenttypeid_id == 12 or component.componenttypeid_id == 15:
+            isBottom = 1
+        else:
+            isBottom = 0
+        if component.componenttypeid_id == 8 or component.componenttypeid_id == 14:
+            isShell = 1
+        else:
+            isShell = 0
+        if isBottom:
+            bottomConsequences = models.RwCaTank.objects.get(id=proposalID)
+            data['hydraulic_water'] = roundData.roundFC(bottomConsequences.hydraulic_water)
+            data['hydraulic_fluid'] = roundData.roundFC(bottomConsequences.hydraulic_fluid)
+            data['seepage_velocity'] = roundData.roundFC(bottomConsequences.seepage_velocity)
+            data['flow_rate_d1'] = roundData.roundFC(bottomConsequences.flow_rate_d1)
+            data['flow_rate_d4'] = roundData.roundFC(bottomConsequences.flow_rate_d4)
+            data['leak_duration_d1'] = roundData.roundFC(bottomConsequences.leak_duration_d1)
+            data['leak_duration_d4'] = roundData.roundFC(bottomConsequences.leak_duration_d4)
+            data['release_volume_leak_d1'] = roundData.roundFC(bottomConsequences.release_volume_leak_d1)
+            data['release_volume_leak_d4'] = roundData.roundFC(bottomConsequences.release_volume_leak_d4)
+            data['release_volume_rupture'] = roundData.roundFC(bottomConsequences.release_volume_rupture)
+            data['time_leak_ground'] = roundData.roundFC(bottomConsequences.time_leak_ground)
+            data['volume_subsoil_leak_d1'] = roundData.roundFC(bottomConsequences.volume_subsoil_leak_d1)
+            data['volume_subsoil_leak_d4'] = roundData.roundFC(bottomConsequences.volume_subsoil_leak_d4)
+            data['volume_ground_water_leak_d1'] = roundData.roundFC(bottomConsequences.volume_ground_water_leak_d1)
+            data['volume_ground_water_leak_d4'] = roundData.roundFC(bottomConsequences.volume_ground_water_leak_d4)
+            data['barrel_dike_rupture'] = roundData.roundFC(bottomConsequences.barrel_dike_rupture)
+            data['barrel_onsite_rupture'] = roundData.roundFC(bottomConsequences.barrel_onsite_rupture)
+            data['barrel_offsite_rupture'] = roundData.roundFC(bottomConsequences.barrel_offsite_rupture)
+            data['barrel_water_rupture'] = roundData.roundFC(bottomConsequences.barrel_water_rupture)
+            data['fc_environ_leak'] = roundData.roundMoney(bottomConsequences.fc_environ_leak)
+            data['fc_environ_rupture'] = roundData.roundMoney(bottomConsequences.fc_environ_rupture)
+            data['fc_environ'] = roundData.roundMoney(bottomConsequences.fc_environ)
+            data['material_factor'] = bottomConsequences.material_factor
+            data['component_damage_cost'] = roundData.roundMoney(bottomConsequences.component_damage_cost)
+            data['business_cost'] = roundData.roundMoney(bottomConsequences.business_cost)
+            data['consequence'] = roundData.roundMoney(bottomConsequences.consequence)
+            data['consequencecategory'] = bottomConsequences.consequencecategory
+            return render(request, 'FacilityUI/risk_summary/fullyBottomConsequence.html', {'data': data, 'proposalID':proposalID, 'ass':rwAss})
+        elif isShell:
+            shellConsequences = models.RwCaTank.objects.get(id=proposalID)
+            data['flow_rate_d1'] = roundData.roundFC(shellConsequences.flow_rate_d1)
+            data['flow_rate_d2'] = roundData.roundFC(shellConsequences.flow_rate_d2)
+            data['flow_rate_d3'] = roundData.roundFC(shellConsequences.flow_rate_d3)
+            data['flow_rate_d4'] = roundData.roundFC(shellConsequences.flow_rate_d4)
+            data['leak_duration_d1'] = roundData.roundFC(shellConsequences.leak_duration_d1)
+            data['leak_duration_d2'] = roundData.roundFC(shellConsequences.leak_duration_d2)
+            data['leak_duration_d3'] = roundData.roundFC(shellConsequences.leak_duration_d3)
+            data['leak_duration_d4'] = roundData.roundFC(shellConsequences.leak_duration_d4)
+            data['release_volume_leak_d1'] = roundData.roundFC(shellConsequences.release_volume_leak_d1)
+            data['release_volume_leak_d2'] = roundData.roundFC(shellConsequences.release_volume_leak_d2)
+            data['release_volume_leak_d3'] = roundData.roundFC(shellConsequences.release_volume_leak_d3)
+            data['release_volume_leak_d4'] = roundData.roundFC(shellConsequences.release_volume_leak_d4)
+            data['release_volume_rupture'] = roundData.roundFC(shellConsequences.release_volume_rupture)
+            data['time_leak_ground'] = roundData.roundFC(shellConsequences.time_leak_ground)
+            data['volume_subsoil_leak_d1'] = roundData.roundFC(shellConsequences.volume_subsoil_leak_d1)
+            data['volume_subsoil_leak_d4'] = roundData.roundFC(shellConsequences.volume_subsoil_leak_d4)
+            data['volume_ground_water_leak_d1'] = roundData.roundFC(shellConsequences.volume_ground_water_leak_d1)
+            data['volume_ground_water_leak_d4'] = roundData.roundFC(shellConsequences.volume_ground_water_leak_d4)
+            data['barrel_dike_rupture'] = roundData.roundFC(shellConsequences.barrel_dike_rupture)
+            data['barrel_onsite_rupture'] = roundData.roundFC(shellConsequences.barrel_onsite_rupture)
+            data['barrel_offsite_rupture'] = roundData.roundFC(shellConsequences.barrel_offsite_rupture)
+            data['barrel_water_rupture'] = roundData.roundFC(shellConsequences.barrel_water_rupture)
+            data['fc_environ_leak'] = roundData.roundMoney(shellConsequences.fc_environ_leak)
+            data['fc_environ_rupture'] = roundData.roundMoney(shellConsequences.fc_environ_rupture)
+            data['fc_environ'] = roundData.roundMoney(shellConsequences.fc_environ)
+            data['component_damage_cost'] = roundData.roundMoney(shellConsequences.component_damage_cost)
+            data['business_cost'] = roundData.roundMoney(shellConsequences.business_cost)
+            data['consequence'] = roundData.roundMoney(shellConsequences.consequence)
+            data['consequencecategory'] = shellConsequences.consequencecategory
+            return render(request, 'FacilityUI/risk_summary/fullyShellConsequence.html', {'data': data, 'proposalID':proposalID, 'ass':rwAss})
+        else:
+            ca = models.RwCaLevel1.objects.get(id= proposalID)
+            inputCa = models.RwInputCaLevel1.objects.get(id= proposalID)
+            data['production_cost'] = roundData.roundMoney(inputCa.production_cost)
+            data['equipment_cost'] = roundData.roundMoney(inputCa.equipment_cost)
+            data['personal_density'] = inputCa.personal_density
+            data['evironment_cost'] = roundData.roundMoney(inputCa.evironment_cost)
+            data['ca_cmd'] = roundData.roundFC(ca.ca_cmd)
+            data['ca_inj_flame'] = roundData.roundFC(ca.ca_inj_flame)
+            data['fc_cmd'] = roundData.roundMoney(ca.fc_cmd)
+            data['fc_affa'] = roundData.roundMoney(ca.fc_affa)
+            data['fc_prod'] = roundData.roundMoney(ca.fc_prod)
+            data['fc_inj'] = roundData.roundMoney(ca.fc_inj)
+            data['fc_envi'] = roundData.roundMoney(ca.fc_envi)
+            data['fc_total'] = roundData.roundMoney(ca.fc_total)
+            data['fcof_category'] = ca.fcof_category
+            return render(request, 'FacilityUI/risk_summary/fullyNormalConsequence.html', {'data': data, 'proposalID':proposalID, 'ass':rwAss})
+    except:
+        raise Http404

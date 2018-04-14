@@ -1917,6 +1917,11 @@ class DM_CAL:
         TOTAL_DF_API = max(self.DF_THINNING_TOTAL_API(i),self.DF_EXT_TOTAL_API(i)) + self.DF_SSC_TOTAL_API(i) + self.DF_HTHA_API(i) + self.DF_BRIT_TOTAL_API() + self.DF_PIPE_API()
         return TOTAL_DF_API
 
+    def DF_TOTAL_GENERAL(self, i):
+        TOTAL_DF_API = self.DF_THINNING_TOTAL_API(i), self.DF_EXT_TOTAL_API(i) + self.DF_SSC_TOTAL_API(
+            i) + self.DF_HTHA_API(i) + self.DF_BRIT_TOTAL_API() + self.DF_PIPE_API()
+        return TOTAL_DF_API
+
     def DF_LIST_16(self, FC_Total, GFF, FSM, Risk_Target):
         data = []
         data.append(Risk_Target)

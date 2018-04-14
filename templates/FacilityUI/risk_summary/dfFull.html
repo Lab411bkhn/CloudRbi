@@ -4,7 +4,7 @@
 
 <!----------------BLOCK MENU--------------->
 {% block pof %}{% url 'damgeFactor' proposalID %}{% endblock %}
-{% block ca%}#{% endblock %}
+{% block ca%}{% url 'fullyConsequence' proposalID %}{% endblock %}
 {% block matrix %}{% url 'riskMatrix' proposalID %}{% endblock %}
 {% block backProposal %}{% url 'proposalDisplay' assess.componentid_id %}{% endblock %}
 <!---------------END BLOCK--------------->
@@ -19,10 +19,20 @@
                 <legend class="scheduler-border"><b>Initial Factor</b></legend>
                 <div class="row">
                     <div class="col-md-6">Thinning Type:</div>
-                    <div class="col-md-6"><select class="form-control">
+                    <div class="col-md-6"><select class="form-control" id="thinningType" name="thinningType">
                         <option>Local</option>
                         <option>General</option>
                     </select></div>
+                    <script>
+                        $("#thinningType").val("{{ obj.thinningType }}");
+                        $("#thinningType").change(function () {
+                            var val = $(this).val();
+
+                            if (val == "Local"){
+
+                            }
+                        })
+                    </script>
                 </div>
                 <div class="row">
                     <div class="col-md-6">Total Generic Frequence:</div>
@@ -125,16 +135,16 @@
 
                 <div class="row">
                     <div class="col-md-6">Probability of Failure Category:</div>
-                    <div class="col-md-2">{{ obj.pofap1category }}</div>
-                    <div class="col-md-2">{{ obj.pofap2category }}</div>
-                    <div class="col-md-2">{{ obj.pofap3category }}</div>
+                    <div class="col-md-2"><b>{{ obj.pofap1category }}</b></div>
+                    <div class="col-md-2"><b>{{ obj.pofap2category }}</b></div>
+                    <div class="col-md-2"><b>{{ obj.pofap3category }}</b></div>
                 </div>
             </fieldset>
             <!----------------END BLOCK ------------------------->
         </fieldset>
         <br>
         <div class="row">
-            <div class="col-md-12" style="text-align: right"><button type="submit" class="btn btn-primary">Submit</button></div>
+            <div class="col-md-12" style="text-align: right"><button type="submit" class="btn btn-primary">Save</button></div>
         </div>
     </div>
 </form>

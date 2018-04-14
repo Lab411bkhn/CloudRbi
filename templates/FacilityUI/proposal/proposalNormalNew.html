@@ -97,7 +97,7 @@
 
                     <div class="row">
                         <div class="col-md-6">Min. Required Temperature Before Pressurisation Allowed by Admin, &deg;C:<span style="color: red">*</span></div>
-                        <div class="col-md-6"><input type="number"step="0.01" class="form-control" name="Min" value="0" placeholder="Input min req temp here!" required/></div>
+                        <div class="col-md-6"><input type="number"step="0.01" class="form-control" name="Min" value="0" max="100000" placeholder="Input min req temp here!" required/></div>
                     </div>
 
                     <div class="row">
@@ -156,7 +156,7 @@
 
                     <div class="row">
                         <div class="col-md-6">Equipment Volume, m<sup>3</sup>:<span style="color: red">*</span></div>
-                        <div class="col-md-6"><input type="number" min="0" step="0.01" name="EquipmentVolume" class="form-control" value="0" placeholder="Input equipment volume here!" required/></div>
+                        <div class="col-md-6"><input type="number" min="0" max="10000000" step="0.01" name="EquipmentVolume" class="form-control" value="0" placeholder="Input equipment volume here!" required/></div>
                     </div>
                 </fieldset>
             </div>
@@ -166,21 +166,21 @@
                     <legend class="scheduler-border"><b>Component Properties</b></legend>
                     <div class="row">
                         <div class="col-md-3">Nominal Diameter, in:<span style="color: red">*</span></div>
-                        <div class="col-md-3"><input type="number" class="form-control" step="0.01" min="0" value="0" name="NominalDiameter" placeholder="Normal diameter!" required/></div>
+                        <div class="col-md-3"><input type="number" class="form-control" step="0.01" min="0" max="100000" value="0" name="NominalDiameter" placeholder="Normal diameter!" required/></div>
                         <div class="col-md-3">Nominal Thickness, mm:<span style="color: red">*</span></div>
-                        <div class="col-md-3"><input type="number" class="form-control" step="0.01" min="0" name="NominalThickness" value="0" placeholder="Normal thickness" required/></div>
+                        <div class="col-md-3"><input type="number" class="form-control" step="0.01" min="0" max="100000" name="NominalThickness" value="0" placeholder="Normal thickness" required/></div>
                     </div>
                     <div class="row">
                         <div class="col-md-3">Current Thickness, mm:<span style="color: red">*</span></div>
-                        <div class="col-md-3"><input type="number" class="form-control" step="0.01" min="0" value="0" placeholder="Current thickness" name="CurrentThickness" required/></div>
+                        <div class="col-md-3"><input type="number" class="form-control" step="0.01" min="0" max="100000" value="0" placeholder="Current thickness" name="CurrentThickness" required/></div>
                         <div class="col-md-3">Min. Required Thickness, mm:<span style="color: red">*</span></div>
-                        <div class="col-md-3"><input type="number" class="form-control" step="0.01" min="0" value="0" placeholder="Req thickness" name="tmin" required/></div>
+                        <div class="col-md-3"><input type="number" class="form-control" step="0.01" min="0" max="100000" value="0" placeholder="Req thickness" name="tmin" required/></div>
                     </div>
                     <div class="row">
                         <div class="col-md-3">Current Corrosion Rate, mm/yr:<span style="color: red">*</span></div>
-                        <div class="col-md-3"><input type="number" class="form-control" step="0.01" min="0" value="0" placeholder="Current rate" name="CurrentRate" required/></div>
+                        <div class="col-md-3"><input type="number" class="form-control" step="0.01" min="0" value="0" max="1000" placeholder="Current rate" name="CurrentRate" required/></div>
                         <div class="col-md-3">Delta FATT:<span style="color: red">*</span></div>
-                        <div class="col-md-3"><input type="number" class="form-control" step="0.01" min="0" value="0" placeholder="Delta FATT" name="DeltaFATT" required/></div>
+                        <div class="col-md-3"><input type="number" class="form-control" step="0.01" min="0" value="0" max="100000" placeholder="Delta FATT" name="DeltaFATT" required/></div>
                     </div>
                     <br>
                     <div class="row">
@@ -324,21 +324,21 @@
                     <legend class="scheduler-border"><b>Operating Condition</b></legend>
                     <div class="row">
                         <div class="col-md-3" style="color: red">Maximum Operating Temperature, &deg;C:<span style="color: red">*</span></div>
-                        <div class="col-md-3"><input type="number" class="form-control" step="0.01" value="0" name="MaxOT" id="MaxOT" placeholder="Maximum operator temp" required/></div>
+                        <div class="col-md-3"><input type="number" class="form-control" max="100000" step="0.01" value="0" name="MaxOT" id="MaxOT" placeholder="Maximum operator temp" required/></div>
                         <div class="col-md-3">Maximum Operating Pressure, psi:<span style="color: red">*</span></div>
-                        <div class="col-md-3"><input type="number" step="0.01" class="form-control" value="0" name="MaxOP" id="MaxOP" placeholder="Maximum operator pressure" required/></div>
+                        <div class="col-md-3"><input type="number" step="0.01" class="form-control" value="0" max="100000" name="MaxOP" id="MaxOP" placeholder="Maximum operator pressure" required/></div>
                     </div>
                     <div class="row">
                         <div class="col-md-3" style="color: red">Minimum Operating Temperature, &deg;C:<span style="color: red">*</span></div>
-                        <div class="col-md-3"><input type="number" value="0" class="form-control" step="0.01" name="MinOT" placeholder="Minimum operator temp" id="MinOT" required/></div>
+                        <div class="col-md-3"><input type="number" value="0" class="form-control" step="0.01" max="10000" name="MinOT" placeholder="Minimum operator temp" id="MinOT" required/></div>
                         <div class="col-md-3">Minimum Operating Pressure, psi:<span style="color: red">*</span></div>
-                        <div class="col-md-3"><input type="number" value="0" class="form-control" step="0.01" name="MinOP" placeholder="Minimum operator pressure" id="MinOP" required/></div>
+                        <div class="col-md-3"><input type="number" value="0" class="form-control" step="0.01" max="100000" name="MinOP" placeholder="Minimum operator pressure" id="MinOP" required/></div>
                     </div>
                     <div class="row">
                         <div class="col-md-3" style="color: red">Operating Hydrogen Partial Pressure, psi:<span style="color: red">*</span></div>
-                        <div class="col-md-3"><input type="number" class="form-control" step="0.01" value="0" name="OHPP" placeholder="Operator hydrogen pressure" required/></div>
+                        <div class="col-md-3"><input type="number" class="form-control" step="0.01" value="0" max="100000" name="OHPP" placeholder="Operator hydrogen pressure" required/></div>
                         <div class="col-md-3" style="color: red">Critical Exposure Temperature, &deg;C:<span style="color: red">*</span></div>
-                        <div class="col-md-3"><input type="number" value="0" class="form-control" step="0.01" name="CET" placeholder="Critical temp" required/></div>
+                        <div class="col-md-3"><input type="number" value="0" class="form-control" step="0.01" max="100000" name="CET" placeholder="Critical temp" required/></div>
                     </div>
                     <script>
                         $("#MaxOP").change(function () {
@@ -414,9 +414,9 @@
                     </div>
                     <div class="row">
                         <div class="col-md-3">Max.Design Temperature, &deg;C:<span style="color: red">*</span></div>
-                        <div class="col-md-3"><input type="number" class="form-control" step="0.01" value="0" name="MaxDesignTemp" id="MaxDesignTemp" placeholder="Maximum design temp" required/></div>
+                        <div class="col-md-3"><input type="number" class="form-control" step="0.01" value="0" max="100000" name="MaxDesignTemp" id="MaxDesignTemp" placeholder="Maximum design temp" required/></div>
                         <div class="col-md-3">Min.Design Temperature, &deg;C:<span style="color: red">*</span></div>
-                        <div class="col-md-3"><input type="number" step="0.01" class="form-control" value="0" name="MinDesignTemp" id="MinDesignTemp" placeholder="Minimum design temp" required/></div>
+                        <div class="col-md-3"><input type="number" step="0.01" class="form-control" value="0" max="100000" name="MinDesignTemp" id="MinDesignTemp" placeholder="Minimum design temp" required/></div>
                         <!-------demo catch data-------->
                         <script>
                             $("#MaxDesignTemp").change(function () {
@@ -431,19 +431,19 @@
                     </div>
                     <div class="row">
                         <div class="col-md-3">Design Pressure, psi:<span style="color: red">*</span></div>
-                        <div class="col-md-3"><input type="number" class="form-control" step="0.01" min="0" value="0" name="DesignPressure" placeholder="Design pressure" required/></div>
+                        <div class="col-md-3"><input type="number" class="form-control" step="0.01" min="0" value="0" max="100000" name="DesignPressure" placeholder="Design pressure" required/></div>
                         <div class="col-md-3">Reference Temperature, &deg;C:<span style="color: red">*</span></div>
-                        <div class="col-md-3"><input type="number" step="0.01" class="form-control" value="0" name="ReferenceTemperature" placeholder="Ref temp" required/></div>
+                        <div class="col-md-3"><input type="number" step="0.01" class="form-control" value="0" max="100000" name="ReferenceTemperature" placeholder="Ref temp" required/></div>
                     </div>
                     <div class="row">
                         <div class="col-md-3">Allowable Stress at Assessment Temperature, psi:<span style="color: red">*</span></div>
-                        <div class="col-md-3"><input type="number" class="form-control" step="0.01" value="0" min="0" name="ASAT" placeholder="Allow stress" required/></div>
+                        <div class="col-md-3"><input type="number" class="form-control" step="0.01" value="0" max="100000" min="0" name="ASAT" placeholder="Allow stress" required/></div>
                         <div class="col-md-3">Brittle Fracture Governing Thickness, mm:<span style="color: red">*</span></div>
-                        <div class="col-md-3"><input type="number" class="form-control" step="0.01" value="0" min="0" name="BFGT" placeholder="Brittle thickness" required/></div>
+                        <div class="col-md-3"><input type="number" class="form-control" step="0.01" value="0" max="10000" min="0" name="BFGT" placeholder="Brittle thickness" required/></div>
                     </div>
                     <div class="row">
                         <div class="col-md-3">Corrosion Allowance, mm:<span style="color: red">*</span></div>
-                        <div class="col-md-3"><input type="number" step="0.01" class="form-control" value="0" min="0" name="CorrosionAllowance" placeholder="Corrosion allow" required/></div>
+                        <div class="col-md-3"><input type="number" step="0.01" class="form-control" value="0" min="0" max="10000" name="CorrosionAllowance" placeholder="Corrosion allow" required/></div>
                         <div class="col-md-3">Sigma Phase, %:<span style="color: red">*</span></div>
                         <div class="col-md-3"><input type="number" step="0.01" min="0" max="100" value="0" class="form-control" name="SigmaPhase" placeholder="Percent sigma" required/></div>
                     </div>
@@ -566,7 +566,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-6">Material Cost Factor:<span style="color: red">*</span></div>
-                        <div class="col-md-6"><input type="number" class="form-control" step="0.01" min="0" value="0" name="MaterialCostFactor" placeholder="Material cost factor" required/></div>
+                        <div class="col-md-6"><input type="number" class="form-control" step="0.01" min="0" value="0" max="1000" name="MaterialCostFactor" placeholder="Material cost factor" required/></div>
                     </div>
                 </fieldset>
             </div>
@@ -641,7 +641,7 @@
                         </div>
                         <div class="row">
                             <div class="col-md-6">Cladding Corrosion Rate, mm/yr:<span style="color: red">*</span></div>
-                            <div class="col-md-6"><input type="number" class="form-control" step="0.01" min="0" name="CladdingCorrosionRate" value="0" placeholder="Cladding corrosion rate" required/></div>
+                            <div class="col-md-6"><input type="number" class="form-control" step="0.01" min="0" max="1000" name="CladdingCorrosionRate" value="0" placeholder="Cladding corrosion rate" required/></div>
                         </div>
                     </fieldset>
                     <fieldset class="scheduler-border">
@@ -857,7 +857,7 @@
                             {% endfor %}
                         </select></div>
                         <div class="col-md-3">Mass Inventory, kg:<span style="color: red">*</span></div>
-                        <div class="col-md-3"><input type="number" step="0.01" min="0" class="form-control" name="MassInventory" value="0" placeholder="Mass inventory" required></div>
+                        <div class="col-md-3"><input type="number" step="0.01" min="0" max="1000000" class="form-control" name="MassInventory" value="0" placeholder="Mass inventory" required></div>
                     </div>
                     <div class="row">
                         <div class="col-md-3">Systerm:<span style="color: red">*</span></div>
@@ -868,11 +868,11 @@
                             <option value="Two-phase">Two-phase</option>
                         </select></div>
                         <div class="col-md-3">Mass Component, kg:<span style="color: red">*</span></div>
-                        <div class="col-md-3"><input type="number" class="form-control" step="0.01" min="0" name="MassComponent" placeholder="Mass component" value="0" required></div>
+                        <div class="col-md-3"><input type="number" class="form-control" step="0.01" min="0" max="1000000" name="MassComponent" placeholder="Mass component" value="0" required></div>
                     </div>
                     <div class="row">
                         <div class="col-md-3">Equipment Cost, $/m<sup>2</sup>:<span style="color: red">*</span></div>
-                        <div class="col-md-3"><input type="number" class="form-control" step="0.01" min="0" name="EquipmentCost" value="0" placeholder="Equipment cost" required></div>
+                        <div class="col-md-3"><input type="number" class="form-control" step="0.01" min="0" max="100000" name="EquipmentCost" value="0" placeholder="Equipment cost" required></div>
                         <div class="col-md-3">Mittigation Systerm:</div>
                         <div class="col-md-3"><select class="form-control" name="MittigationSysterm">
                             <option value="" selected disabled>Please select mittigation..</option>
@@ -884,21 +884,21 @@
                     </div>
                     <div class="row">
                         <div class="col-md-3">Production Cost, $/day:<span style="color: red">*</span></div>
-                        <div class="col-md-3"><input type="number" class="form-control" step="0.01" min="0" name="ProductionCost" placeholder="Production cost" value="0" required></div>
+                        <div class="col-md-3"><input type="number" class="form-control" step="0.01" min="0" max="1000000000" name="ProductionCost" placeholder="Production cost" value="0" required></div>
                         <div class="col-md-3">Toxic Percent, %:<span style="color: red">*</span></div>
                         <div class="col-md-3"><input type="number" id="ToxicPercent" name="ToxicPercent" class="form-control" min="0" max="100" step="0.01" value="0" placeholder="Toxic percent" required></div>
                     </div>
                     <div class="row">
                         <div class="col-md-3">Injure Cost, $/fatality:<span style="color: red">*</span></div>
-                        <div class="col-md-3"><input type="number" step="0.01" class="form-control" min="0" name="InjureCost" value="0" placeholder="Injure cost" required></div>
+                        <div class="col-md-3"><input type="number" step="0.01" class="form-control" min="0" max="1000000000" name="InjureCost" value="0" placeholder="Injure cost" required></div>
                         <div class="col-md-3">Release Duration, minutes:</div>
                         <div class="col-md-3"><select class="form-control" id="ReleaseDuration" name="ReleaseDuration" ></select></div>
                     </div>
                     <div class="row">
                         <div class="col-md-3">Environment Cost, $/event:<span style="color: red">*</span></div>
-                        <div class="col-md-3"><input type="number" class="form-control" step="0.01" min="0" value="0" name="EnvironmentCost" placeholder="Environ clean cost" required></div>
+                        <div class="col-md-3"><input type="number" class="form-control" step="0.01" min="0" max="10000000000" value="0" name="EnvironmentCost" placeholder="Environ clean cost" required></div>
                         <div class="col-md-3">Person Density, persons/m<sup>2</sup>:<span style="color: red">*</span></div>
-                        <div class="col-md-3"><input type="number" class="form-control" step="0.00001" min="0" value="0" name="PersonDensity" placeholder="Person density" required></div>
+                        <div class="col-md-3"><input type="number" class="form-control" step="0.00001" min="0" value="0" max="100" name="PersonDensity" placeholder="Person density" required></div>
                     </div>
                     <div class="row">
                         <div class="col-md-3">Detection Type:</div>

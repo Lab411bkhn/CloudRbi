@@ -93,7 +93,7 @@
                          <!----- do nothing ------>
                         {% else %}
                         <div class="col-md-6">Distance To Ground Water, m:<span style="color: red">*</span></div>
-                        <div class="col-md-6"><input type="number" step="0.01" class="form-control" min="0" name="Distance" value="{{ rwEq.distancetogroundwater }}" placeholder="Distance to ground water" required/></div>
+                        <div class="col-md-6"><input type="number" step="0.01" max="100000" class="form-control" min="0" name="Distance" value="{{ rwEq.distancetogroundwater }}" placeholder="Distance to ground water" required/></div>
                         {% endif %}
                     </div>
                     <div class="row">
@@ -116,7 +116,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-6">Min. Required Temperature Before Pressurisation Allowed by Admin, &deg;C:<span style="color: red">*</span></div>
-                        <div class="col-md-6"><input type="number" step="0.01" class="form-control" name="MinReq" value="{{ rwEq.minreqtemperaturepressurisation }}" placeholder="Min req temp" required/></div>
+                        <div class="col-md-6"><input type="number" step="0.01" max="100000" class="form-control" name="MinReq" value="{{ rwEq.minreqtemperaturepressurisation }}" placeholder="Min req temp" required/></div>
                     </div>
                     <br>
                     <div class="row">
@@ -278,7 +278,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-6">Equipment Volume, m<sup>3</sup>:<span style="color: red">*</span></div>
-                        <div class="col-md-6"><input type="number" min="0" step="0.01" class="form-control" value="{{ rwEq.volume }}" name="EquipmentVolume" placeholder="Equipment volume" required/></div>
+                        <div class="col-md-6"><input type="number" min="0" max="1000000" step="0.01" class="form-control" value="{{ rwEq.volume }}" name="EquipmentVolume" placeholder="Equipment volume" required/></div>
                     </div>
                 </fieldset>
             </div>
@@ -288,22 +288,22 @@
                     <legend class="scheduler-border"><b>Component Properties</b></legend>
                     <div class="row">
                         <div class="col-md-3">Tank Diameter, in:<span style="color: red">*</span></div>
-                        <div class="col-md-3"><input type="number" step="0.01" class="form-control" min="0" value="{{ rwComp.nominaldiameter }}" name="TankDiameter" placeholder="Tank diameter" required/></div>
+                        <div class="col-md-3"><input type="number" step="0.01" max="100000" class="form-control" min="0" value="{{ rwComp.nominaldiameter }}" name="TankDiameter" placeholder="Tank diameter" required/></div>
                         <div class="col-md-3">Nominal Thickness, mm:<span style="color: red">*</span></div>
-                        <div class="col-md-3"><input type="number" step="0.01" class="form-control" min="0" value="{{ rwComp.nominalthickness }}" name="NominalThickness" placeholder="Normal thickness" required/></div>
+                        <div class="col-md-3"><input type="number" step="0.01" max="100000" class="form-control" min="0" value="{{ rwComp.nominalthickness }}" name="NominalThickness" placeholder="Normal thickness" required/></div>
                     </div>
                     <div class="row">
                         <div class="col-md-3">Current Thickness, mm:<span style="color: red">*</span></div>
-                        <div class="col-md-3"><input type="number" step="0.01" class="form-control" value="{{ rwComp.currentthickness }}" min="0" name="CurrentThickness" placeholder="Current thickness" required/></div>
+                        <div class="col-md-3"><input type="number" step="0.01" max="100000" class="form-control" value="{{ rwComp.currentthickness }}" min="0" name="CurrentThickness" placeholder="Current thickness" required/></div>
                         <div class="col-md-3">Min. Required Thickness, mm:<span style="color: red">*</span></div>
-                        <div class="col-md-3"><input type="number" step="0.01" min="0" class="form-control" value="{{ rwComp.minreqthickness }}" name="MinReqThick" placeholder="Req thickness" required/></div>
+                        <div class="col-md-3"><input type="number" step="0.01" min="0" max="100000" class="form-control" value="{{ rwComp.minreqthickness }}" name="MinReqThick" placeholder="Req thickness" required/></div>
                     </div>
                     <div class="row">
                         <div class="col-md-3">Current Corrosion Rate, mm/yr:<span style="color: red">*</span></div>
-                        <div class="col-md-3"><input type="number" step="0.01" min="0" class="form-control" value="{{ rwComp.currentcorrosionrate }}" name="CurrentCorrosionRate" placeholder="Corrosion rate" required/></div>
+                        <div class="col-md-3"><input type="number" step="0.01" min="0" max="1000" class="form-control" value="{{ rwComp.currentcorrosionrate }}" name="CurrentCorrosionRate" placeholder="Corrosion rate" required/></div>
                         {% if isshell %}
                         <div class="col-md-3">Shell Course Height, m:<span style="color: red">*</span></div>
-                        <div class="col-md-3"><input type="number" step="0.01" class="form-control" value="{{ rwComp.shellheight }}" min="0" name="shellHeight" placeholder="Shell course height" required/></div>
+                        <div class="col-md-3"><input type="number" step="0.01" class="form-control" max="1000" value="{{ rwComp.shellheight }}" min="0" name="shellHeight" placeholder="Shell course height" required/></div>
                         {% endif %}
                     </div>
                     <div class="row">
@@ -394,21 +394,21 @@
                     <legend class="scheduler-border"><b>Operating Condition</b></legend>
                     <div class="row">
                         <div class="col-md-3" style="color: red">Maximum Operating Temperature, &deg;C:<span style="color: red">*</span></div>
-                        <div class="col-md-3"><input type="number" class="form-control" step="0.01" value="{{ rwStream.maxoperatingtemperature }}" name="MaxOT" placeholder="Maximum operator temp" required/></div>
+                        <div class="col-md-3"><input type="number" class="form-control" step="0.01" max="100000" value="{{ rwStream.maxoperatingtemperature }}" name="MaxOT" placeholder="Maximum operator temp" required/></div>
                         <div class="col-md-3">Maximum Operating Pressure, psi:<span style="color: red">*</span></div>
-                        <div class="col-md-3"><input type="number" step="0.01" class="form-control" value="{{ rwStream.maxoperatingpressure }}" name="MaxOP" placeholder="Maximum operator pressure" required/></div>
+                        <div class="col-md-3"><input type="number" step="0.01" max="100000" class="form-control" value="{{ rwStream.maxoperatingpressure }}" name="MaxOP" placeholder="Maximum operator pressure" required/></div>
                     </div>
                     <div class="row">
                         <div class="col-md-3" style="color: red">Min.Operating Temperature, &deg;C:<span style="color: red">*</span></div>
-                        <div class="col-md-3"><input type="number" class="form-control" step="0.01" value="{{ rwStream.minoperatingtemperature }}" name="MinOT" placeholder="Minimum operator temp" required/></div>
+                        <div class="col-md-3"><input type="number" class="form-control" max="100000" step="0.01" value="{{ rwStream.minoperatingtemperature }}" name="MinOT" placeholder="Minimum operator temp" required/></div>
                         <div class="col-md-3">Min.Operating Pressure, psi:<span style="color: red">*</span></div>
-                        <div class="col-md-3"><input type="number" class="form-control" step="0.01" value="{{ rwStream.minoperatingpressure }}" name="MinOP" placeholder="Minimum operator pressure" required/></div>
+                        <div class="col-md-3"><input type="number" class="form-control" max="100000" step="0.01" value="{{ rwStream.minoperatingpressure }}" name="MinOP" placeholder="Minimum operator pressure" required/></div>
                     </div>
                     <div class="row">
                         <div class="col-md-3" style="color: red">Operating Hydrogen Partial Pressure, psi:<span style="color: red">*</span></div>
-                        <div class="col-md-3"><input type="number" class="form-control" step="0.01" min="0" value="{{ rwStream.h2spartialpressure }}" name="OHPP" placeholder="Operator hydrogen pressure" required/></div>
+                        <div class="col-md-3"><input type="number" class="form-control" max="100000" step="0.01" min="0" value="{{ rwStream.h2spartialpressure }}" name="OHPP" placeholder="Operator hydrogen pressure" required/></div>
                         <div class="col-md-3" style="color: red">Critical Exposure Temperature, &deg;C:<span style="color: red">*</span></div>
-                        <div class="col-md-3"><input type="number" class="form-control" step="0.01" value="{{ rwStream.criticalexposuretemperature }}" name="CET" placeholder="Critical temp" required/></div>
+                        <div class="col-md-3"><input type="number" class="form-control" max="100000" step="0.01" value="{{ rwStream.criticalexposuretemperature }}" name="CET" placeholder="Critical temp" required/></div>
                     </div>
                     <fieldset class="scheduler-border">
                         <legend class="scheduler-border"><b>Operating Temperature in Different Temperature Ranger</b></legend>
@@ -465,25 +465,25 @@
                     </div>
                     <div class="row">
                         <div class="col-md-3">Max.Design Temperature, &deg;C:<span style="color: red">*</span></div>
-                        <div class="col-md-3"><input type="number" step="0.01" value="{{ rwMaterial.designtemperature }}" class="form-control" name="MaxDesignTemp" placeholder="Maximum design temp" required/></div>
+                        <div class="col-md-3"><input type="number" step="0.01" max="100000" value="{{ rwMaterial.designtemperature }}" class="form-control" name="MaxDesignTemp" placeholder="Maximum design temp" required/></div>
                         <div class="col-md-3">Min.Design Temperature, &deg;C:<span style="color: red">*</span>></div>
-                        <div class="col-md-3"><input type="number" step="0.01" value="{{ rwMaterial.mindesigntemperature }}" class="form-control" name="MinDesignTemp" placeholder="Minimum design temp" required/></div>
+                        <div class="col-md-3"><input type="number" step="0.01" max="100000" value="{{ rwMaterial.mindesigntemperature }}" class="form-control" name="MinDesignTemp" placeholder="Minimum design temp" required/></div>
                     </div>
                     <div class="row">
                         <div class="col-md-3">Design Pressure, psi:<span style="color: red">*</span></div>
-                        <div class="col-md-3"><input type="number "step="0.01" min="0" value="{{ rwMaterial.designpressure }}" class="form-control" name="DesignPressure" placeholder="Design pressure" required/></div>
+                        <div class="col-md-3"><input type="number "step="0.01" min="0" max="100000" value="{{ rwMaterial.designpressure }}" class="form-control" name="DesignPressure" placeholder="Design pressure" required/></div>
                         <div class="col-md-3">Reference Temperature, &deg;C:<span style="color: red">*</span></div>
-                        <div class="col-md-3"><input type="number" step="0.01" value="{{ rwMaterial.referencetemperature }}" class="form-control" name="ReferenceTemperature" placeholder="Ref temp" required/></div>
+                        <div class="col-md-3"><input type="number" step="0.01" max="100000" value="{{ rwMaterial.referencetemperature }}" class="form-control" name="ReferenceTemperature" placeholder="Ref temp" required/></div>
                     </div>
                     <div class="row">
                         <div class="col-md-3">Allowable Stress at Assessment Temperature, psi:<span style="color: red">*</span></div>
-                        <div class="col-md-3"><input type="number" step="0.01" min="0" value="{{ rwMaterial.allowablestress }}" class="form-control" name="ASAT" placeholder="Allow stress" required/></div>
+                        <div class="col-md-3"><input type="number" step="0.01" max="100000" min="0" value="{{ rwMaterial.allowablestress }}" class="form-control" name="ASAT" placeholder="Allow stress" required/></div>
                         <div class="col-md-3">Brittle Fracture Governing Thickness, mm:<span style="color: red">*</span></div>
-                        <div class="col-md-3"><input type="number" step="0.01" min="0" value="{{ rwMaterial.brittlefracturethickness }}" class="form-control" name="BFGT" placeholder="Brittle thickness" required/></div>
+                        <div class="col-md-3"><input type="number" step="0.01" min="0" max="10000" value="{{ rwMaterial.brittlefracturethickness }}" class="form-control" name="BFGT" placeholder="Brittle thickness" required/></div>
                     </div>
                     <div class="row">
                         <div class="col-md-3">Corrosion Allowance, mm:<span style="color: red">*</span></div>
-                        <div class="col-md-3"><input type="number" step="0.01" min="0" value="{{ rwMaterial.corrosionallowance }}" class="form-control" name="CorrosionAllowance" placeholder="Corrosion allow" required/></div>
+                        <div class="col-md-3"><input type="number" step="0.01" max="10000" min="0" value="{{ rwMaterial.corrosionallowance }}" class="form-control" name="CorrosionAllowance" placeholder="Corrosion allow" required/></div>
                     </div>
                     <br>
                     <div class="row">
@@ -573,11 +573,11 @@
                     </div>
                     <div class="row">
                         <div class="col-md-6">Material Cost Factor:<span style="color: red">*</span></div>
-                        <div class="col-md-6"><input type="number" class="form-control" min="0" step="0.01" value="{{ rwMaterial.costfactor }}" name="MaterialCostFactor" placeholder="Material cost factor" required/></div>
+                        <div class="col-md-6"><input type="number" class="form-control" min="0" max="1000" step="0.01" value="{{ rwMaterial.costfactor }}" name="MaterialCostFactor" placeholder="Material cost factor" required/></div>
                     </div>
                     <div class="row">
                         <div class="col-md-6">Production Cost, $/day:<span style="color: red">*</span></div>
-                        <div class="col-md-6"><input type="number" class="form-control" min="0" step="0.01" value="{{ rwInputCa.productioncost }}" name="ProductionCost" placeholder="Production cost" required/></div>
+                        <div class="col-md-6"><input type="number" class="form-control" min="0" step="0.01" max="1000000000" value="{{ rwInputCa.productioncost }}" name="ProductionCost" placeholder="Production cost" required/></div>
                     </div>
                 </fieldset>
                 <!---------------PTA CHECKED---------------->
@@ -695,7 +695,7 @@
                         </div>
                         <div class="row">
                             <div class="col-md-6">Cladding Corrosion Rate, mm/yr:<span style="color: red">*</span></div>
-                            <div class="col-md-6"><input type="number" class="form-control" name="CladdingCorrosionRate" value="{{ rwCoat.claddingcorrosionrate }}" step="0.01" min="0" placeholder="Clad corrosion rate" required/></div>
+                            <div class="col-md-6"><input type="number" class="form-control" name="CladdingCorrosionRate" value="{{ rwCoat.claddingcorrosionrate }}" step="0.01" min="0" max="1000" placeholder="Clad corrosion rate" required/></div>
                         </div>
                     </fieldset>
 
@@ -881,7 +881,7 @@
                         </div>
                         <div class="row">
                             <div class="col-md-3">Fluid Height, m:<span style="color: red">*</span></div>
-                            <div class="col-md-3"><input type="number" step="0.01" min="0" value="{{ rwInputCa.fluid_height }}" class="form-control" name="FluidHeight" placeholder="Fluid height" required/></div>
+                            <div class="col-md-3"><input type="number" step="0.01" min="0" max="1000000" value="{{ rwInputCa.fluid_height }}" class="form-control" name="FluidHeight" placeholder="Fluid height" required/></div>
                             <div class="col-md-3">Percentage of Fluid Leaving the Dike, %:<span style="color: red">*</span></div>
                             <div class="col-md-3"><input type="number" step="0.01" min="0" max="100" value="{{ rwInputCa.p_lvdike }}" class="form-control" name="PFLD" placeholder="Percent fluid leave dike" required/></div>
                         </div>

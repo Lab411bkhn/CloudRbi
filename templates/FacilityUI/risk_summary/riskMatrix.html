@@ -4,7 +4,7 @@
 
 <!----------------BLOCK MENU--------------->
 {% block pof %}{% url 'damgeFactor' proposalID %}{% endblock %}
-{% block ca%}#{% endblock %}
+{% block ca%}{% url 'fullyConsequence' proposalID %}{% endblock %}
 {% block matrix %}{% url 'riskMatrix' proposalID %}{% endblock %}
 {% block backProposal %}{% url 'proposalDisplay' ass.componentid_id %}{% endblock %}
 <!---------------END BLOCK--------------->
@@ -206,7 +206,7 @@
             var rWidth = ctx.measureText(rText).width;
         </script>
     </div>
-    <div>
+    <div class="input-data">
         <div style="text-align: center">
             <br>
             <caption><b style="font-size: 20px; color: darkblue;">Proposal Risk Details</b></caption>

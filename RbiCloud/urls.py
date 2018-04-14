@@ -57,6 +57,7 @@ urlpatterns = [
     path('tank/<int:proposalID>/edit/', views.EditTank, name='tankEdit'),
     path('proposal/<int:proposalID>/risk-matrix/', views.RiskMatrix, name='riskMatrix'),
     path('proposal/<int:proposalID>/damage-factor/', views.FullyDamageFactor, name='damgeFactor'),
+    path('proposal/<int:proposalID>/fully-consequence/',views.FullyConsequence, name='fullyConsequence'),
 ]
 handler404 = 'cloud.views.handler404'
 handler500 = 'cloud.views.handler404'
