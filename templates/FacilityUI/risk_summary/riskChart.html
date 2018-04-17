@@ -1,0 +1,23 @@
+{% extends 'BaseUI/BaseFacility/baseRiskSummary.html' %}
+{% load staticfiles %}
+{% load static %}
+
+
+
+{% block data-content %}
+    <form method="post">
+    {% csrf_token %}
+        <div style="text-align: center">
+            <canvas id="myChart" width="800" height="600" ></canvas>
+            <script type="text/javascript" src="{% static 'js/Chart.min.js' %}"></script>
+            <script>
+                var ctx = document.getElementById("myChart");
+                var myLineChart = new Chart(ctx,{
+                    type: 'line',
+                    data: data,
+                    options: option,
+                })
+            </script>
+        </div>
+    </form>
+{% endblock %}

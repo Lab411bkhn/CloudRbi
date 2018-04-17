@@ -58,6 +58,7 @@ urlpatterns = [
     path('proposal/<int:proposalID>/risk-matrix/', views.RiskMatrix, name='riskMatrix'),
     path('proposal/<int:proposalID>/damage-factor/', views.FullyDamageFactor, name='damgeFactor'),
     path('proposal/<int:proposalID>/fully-consequence/',views.FullyConsequence, name='fullyConsequence'),
+    path('export/<int:index>/<str:type>/', views.ExportExcel, name='exportData'),
 ]
 handler404 = 'cloud.views.handler404'
 handler500 = 'cloud.views.handler404'

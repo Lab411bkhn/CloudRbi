@@ -7,6 +7,8 @@ from cloud.process.RBI import DM_CAL,CA_CAL,pofConvert
 from datetime import datetime
 from cloud.process.WebUI import location
 from cloud.process.WebUI import roundData
+from cloud.process.File import export_data
+from cloud.process.WebUI import date2Str
 
 # Create your views here.
 def base(request):
@@ -3671,5 +3673,21 @@ def FullyConsequence(request, proposalID):
             data['fc_total'] = roundData.roundMoney(ca.fc_total)
             data['fcof_category'] = ca.fcof_category
             return render(request, 'FacilityUI/risk_summary/fullyNormalConsequence.html', {'data': data, 'proposalID':proposalID, 'ass':rwAss})
+    except:
+        raise Http404
+
+def RiskChart(request, proposalID):
+    rwAssessment = models.RwAssessment.objects.get(id= proposalID)
+    chart = models.RwDataChart.objects.get(id= proposalID)
+    assessmentDate = rwAssessment.assessmentdate
+    dataChart = []
+    dataLabel = []
+    dataTarget = []
+    dataLabel = []
+    return render(request, 'FacilityUI/risk_summary/riskChart.html')
+
+def ExportExcel(request, index, type):
+    try:
+        return export_data.excelExport(index, type)
     except:
         raise Http404

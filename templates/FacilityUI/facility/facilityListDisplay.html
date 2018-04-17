@@ -30,7 +30,7 @@
                         <td align="center"><a href="{% url 'equipmentDisplay' a.ID %}">{{ a.FacilitiName }}</a></td>
                         <td align="center">{{ a.ManagementFactor }}</td>
                         <td align="center">{{ a.RiskTarget }}</td>
-                        <td align="center"><a><i class="fa fa-print" ></i></a></td>
+                        <td align="center"><a href="{% url 'exportData' a.ID 'Facility' %}"><i class="fa fa-print" ></i></a></td>
                     </tr>
                     {% endfor %}
                 </tbody>

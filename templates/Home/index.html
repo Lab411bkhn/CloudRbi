@@ -9,13 +9,14 @@
 {% endblock %}
 
 {% block navbar %}
-    <a class="login" data-toggle="tooltip" data-placement="bottom" title="Sign In"><i class="fa fa-sign-out"></i></a>
-    <a class="active" href="{% url 'home' %}" data-toggle="tooltip" data-placement="bottom" title="Home"><i class="fa fa-home"></i></a>
+{#    <a class="login" data-toggle="tooltip" data-placement="bottom" title="Sign In"><i class="fa fa-sign-out"></i></a>#}
+{#    <a class="active" href="{% url 'home' %}" data-toggle="tooltip" data-placement="bottom" title="Home"><i class="fa fa-home"></i></a>#}
 {% endblock %}
 
 {% block content %}
         <div class="index-normal">
             <div id="index-text">
+                <img src="{% static 'image/HUST150.png' %}">
                 <h1>Fast More. Exactly More.</h1>
                 <h3>Inspection As Service helps millions of administrators,<br> businesses and users  in monitoring, maintaining<br> and replacing facilities immediately</h3><br>
                 <h4>Create your free account</h4>
@@ -23,7 +24,7 @@
             <dv><br><br></dv>
 
             <button class="index-red-btn" onclick="location.href='{% url 'citizenHome' %}'"><i class="fa fa-group" >&emsp;I'm Citizen</i></button>
-            <button class="index-btn" ><i class="fa fa-gear">&emsp;I'm Business</i></button>
+            <button class="index-btn" onclick="location.href='{% url 'facilitiesDisplay' 3 %}'"><i class="fa fa-gear">&emsp;I'm Business</i></button>
             <button class="index-btn" ><i class="fa fa-bank">&emsp;I'm Management</i></button>
 
         </div>

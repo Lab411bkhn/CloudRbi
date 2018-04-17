@@ -36,14 +36,17 @@
 {# header #}
 <div class="navbar navbar-fixed-top">
     <div class="header">
-        <img src= "{% static '/image/cooltext280288669465020.png' %}" style="padding-top: 10px;padding-left: 40px">
+        <img src= "{% static '/image/CortekLogo_hoang.png' %}" style="padding-top: 2px;padding-left: 10px">
         {% block navbar %}{% endblock %}
+        <img src="{% static 'image/HUST.png' %}" style="padding-top:0; padding-left: 20px;">
     </div>
 </div>
 
 {# body #}
         {% block content %}{% endblock %}
 {# footer #}
-    <div class="footer">© 2018 Copyright: Embedded Networking Laboratory</div>
+{# <img src="{% static '/image/HUST_logo.png' %}"  style="padding-top: 1px; padding-left: 1px"> #}
+{# <img src="{% static '/image/HUST_logo.png' %}"  style="padding-top: 0; padding-left: 10px"> #}
+<div class="footer">© 2018 Copyright: Embedded Networking Laboratory, Hanoi University of Science and Technology</div>
 </body>
 </html>
