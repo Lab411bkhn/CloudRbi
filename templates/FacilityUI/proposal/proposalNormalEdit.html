@@ -331,15 +331,19 @@
                         <div class="col-md-6">Branch Diameter:</div>
                         <div class="col-md-6"><select class="form-control" id="BranchDiameter" name="BranchDiameter">
                             <option value="" disabled>Please select branch diameter..</option>
-                            <option>Any branch less than or equal to 2&#34; Nominal OD</option>
-                            <option>All branches greater than  2&#34; Nominal OD</option>
+                            <option>Any branch less than or equal to 2" Nominal OD</option>
+                            <option>All branches greater than 2" Nominal OD</option>
                         </select></div>
                         <script>
-                            {% if rwComp.branchdiameter %}
-                                $("#BranchDiameter").val("{{ rwComp.branchdiameter }}");
-                            {% else %}
+                            if (({{ rwComp.branchdiameter }}) == "Any branch less than or equal to 2&quot; Nominal OD") {
+                                $("#BranchDiameter").prop("selectedIndex", 1);
+                            }
+                            else if (({{ rwComp.branchdiameter }}) == "All branches greater than 2&quot; Nominal OD"){
+                                $("#BranchDiameter").prop("selectedIndex",2);
+                            }
+                            else{
                                 $("#BranchDiameter").prop("selectedIndex",0);
-                            {% endif %}
+                            }
                         </script>
                     </div>
 
@@ -625,7 +629,7 @@
                             if({{ rwMaterial.temper }})
                                 $("#SusceptibleTemper").attr('checked', 'checked');
                             if({{ rwMaterial.nickelbased }})
-                                $("#NickelAlloy").attr('disabled', 'disabled');
+                                $("#NickelAlloy").attr('checked', 'checked');
                         </script>
                     </div>
                     <div class="row">
@@ -633,7 +637,7 @@
                         <div class="col-md-1"><input type="checkbox" id="Chromium" name="Chromium"/></div>
                         <script>
                             if({{ rwMaterial.chromemoreequal12 }})
-                                $("#Chromium").attr('disabled', 'disabled');
+                                $("#Chromium").attr('checked', 'checked');
                         </script>
                     </div>
                     <br>

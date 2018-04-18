@@ -1922,11 +1922,17 @@ class DM_CAL:
             i) + self.DF_HTHA_API(i) + self.DF_BRIT_TOTAL_API() + self.DF_PIPE_API()
         return TOTAL_DF_API
 
+    def convertRisk(self,risk):
+        if risk >= 1:
+            return 1
+        else:
+            return risk
+
     def DF_LIST_16(self, FC_Total, GFF, FSM, Risk_Target):
         data = []
         data.append(Risk_Target)
         for a in range(1, 16):
-            risk= self.DF_TOTAL_API(a) * GFF * FSM * FC_Total
+            risk=self.convertRisk( self.DF_TOTAL_API(a) * GFF * FSM) * FC_Total
             data.append(risk)
         return data
 

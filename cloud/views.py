@@ -1,3 +1,4 @@
+from PIL.PngImagePlugin import _idat
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render, redirect
 from django.http import Http404
@@ -833,6 +834,7 @@ def NewProposal(request, componentID):
             data['Systerm'] = request.POST.get('Systerm')
             data['MassComponent'] = request.POST.get('MassComponent')
             data['EquipmentCost'] = request.POST.get('EquipmentCost')
+            print(data['EquipmentCost'])
             data['MittigationSysterm'] = request.POST.get('MittigationSysterm')
             data['ProductionCost'] = request.POST.get('ProductionCost')
             data['ToxicPercent'] = request.POST.get('ToxicPercent')
@@ -925,7 +927,7 @@ def NewProposal(request, componentID):
                                         release_duration=data['ReleaseDuration'], detection_type=data['DetectionType'],
                                         isulation_type=data['IsulationType'],
                                         mitigation_system=data['MittigationSysterm'],
-                                        equipment_cost=data['EnvironmentCost'], injure_cost=data['InjureCost'],
+                                        equipment_cost=data['EquipmentCost'], injure_cost=data['InjureCost'],
                                         evironment_cost=data['EnvironmentCost'], toxic_percent=data['ToxicPercent'],
                                         personal_density=data['PersonDensity'],
                                         material_cost=data['materialCostFactor'],
@@ -1880,7 +1882,7 @@ def EditProposal(request, proposalID):
         calv1 = models.RwCaLevel1.objects.get(id= proposalID)
         damageMachinsm = models.RwDamageMechanism.objects.filter(id_dm= proposalID)
         refullfc = models.RwFullFcof.objects.get(id= proposalID)
-        chart = models.RwDataChart.objects.get(id= proposalID)
+        chart = models.RwDataChart.objects.filter(id= proposalID)
         assDate = rwassessment.assessmentdate.strftime('%Y-%m-%d')
         try:
             extDate = rwcoat.externalcoatingdate.strftime('%Y-%m-%d')
@@ -2291,7 +2293,7 @@ def EditProposal(request, proposalID):
             rwstream.exposuretoamine=data['ExposureAmine']
             rwstream.h2s=EnvironmentCH2S
             rwstream.h2sinwater=data['H2SContent']
-            rwstreamhydrogen=processHydrogen
+            rwstream.hydrogen= processHydrogen
             rwstream.hydrofluoric=presentHF
             rwstream.materialexposedtoclint=materialExposedFluid
             rwstream.maxoperatingpressure=data['maxOP']
@@ -2362,7 +2364,7 @@ def EditProposal(request, proposalID):
             rwinputca.detection_type=data['DetectionType']
             rwinputca.isulation_type=data['IsulationType']
             rwinputca.mitigation_system=data['MittigationSysterm']
-            rwinputca.equipment_cost=data['EnvironmentCost']
+            rwinputca.equipment_cost=data['EquipmentCost']
             rwinputca.injure_cost=data['InjureCost']
             rwinputca.evironment_cost=data['EnvironmentCost']
             rwinputca.toxic_percent=data['ToxicPercent']
@@ -2638,25 +2640,38 @@ def EditProposal(request, proposalID):
             refullfc.save()
             # data for chart
             riskList = dm_cal.DF_LIST_16(calv1.fc_total, gffTotal, datafaci.managementfactor, target.risktarget_fc)
-            chart.riskage1=riskList[1]
-            chart.riskage2=riskList[2]
-            chart.riskage3=riskList[3]
-            chart.riskage4=riskList[4]
-            chart.riskage5=riskList[5]
-            chart.riskage6=riskList[6]
-            chart.riskage7=riskList[7]
-            chart.riskage8=riskList[8]
-            chart.riskage9=riskList[9]
-            chart.riskage10=riskList[10]
-            chart.riskage11=riskList[11]
-            chart.riskage12=riskList[12]
-            chart.riskage13=riskList[13]
-            chart.riskage14=riskList[14]
-            chart.riskage15=riskList[15]
-            chart.risktarget=riskList[0]
-            chart.save()
+            if chart.count() != 0:
+                chartData = models.RwDataChart.objects.get(id= proposalID)
+                chartData.riskage1=riskList[1]
+                chartData.riskage2=riskList[2]
+                chartData.riskage3=riskList[3]
+                chartData.riskage4=riskList[4]
+                chartData.riskage5=riskList[5]
+                chartData.riskage6=riskList[6]
+                chartData.riskage7=riskList[7]
+                chartData.riskage8=riskList[8]
+                chartData.riskage9=riskList[9]
+                chartData.riskage10=riskList[10]
+                chartData.riskage11=riskList[11]
+                chartData.riskage12=riskList[12]
+                chartData.riskage13=riskList[13]
+                chartData.riskage14=riskList[14]
+                chartData.riskage15=riskList[15]
+                chartData.risktarget=riskList[0]
+                chartData.save()
+            else:
+                chartData = models.RwDataChart(id=rwassessment, riskage1=riskList[1], riskage2=riskList[2],
+                                           riskage3=riskList[3],
+                                           riskage4=riskList[4], riskage5=riskList[5], riskage6=riskList[6],
+                                           riskage7=riskList[7],
+                                           riskage8=riskList[8], riskage9=riskList[9], riskage10=riskList[10],
+                                           riskage11=riskList[11],
+                                           riskage12=riskList[12], riskage13=riskList[13], riskage14=riskList[14],
+                                           riskage15=riskList[15], risktarget=riskList[0])
+                chartData.save()
             return redirect('damgeFactor', proposalID= proposalID)
-    except:
+    except Exception as e:
+        print(e)
         raise Http404
     return render(request, 'FacilityUI/proposal/proposalNormalEdit.html', {'api':Fluid, 'rwAss':rwassessment, 'rwEq':rwequipment,
                                                                            'rwComp':rwcomponent, 'rwStream':rwstream, 'rwExcot':rwexcor,
@@ -2678,7 +2693,7 @@ def EditTank(request, proposalID):
         refullPOF = models.RwFullPof.objects.get(id=proposalID)
         damageMachinsm = models.RwDamageMechanism.objects.filter(id_dm=proposalID)
         refullfc = models.RwFullFcof.objects.get(id=proposalID)
-        chart = models.RwDataChart.objects.get(id=proposalID)
+        chart = models.RwDataChart.objects.filter(id=proposalID)
         assDate = rwassessment.assessmentdate.strftime('%Y-%m-%d')
         try:
             extDate = rwcoat.externalcoatingdate.strftime('%Y-%m-%d')
@@ -3462,24 +3477,35 @@ def EditTank(request, proposalID):
             refullfc.save()
             # data for chart
             riskList = dm_cal.DF_LIST_16(refullfc.fcofvalue, gffTotal, datafaci.managementfactor, target.risktarget_fc)
-
-            chart.riskage1=riskList[1]
-            chart.riskage2=riskList[2]
-            chart.riskage3=riskList[3]
-            chart.riskage4=riskList[4]
-            chart.riskage5=riskList[5]
-            chart.riskage6=riskList[6]
-            chart.riskage7=riskList[7]
-            chart.riskage8=riskList[8]
-            chart.riskage9=riskList[9]
-            chart.riskage10=riskList[10]
-            chart.riskage11=riskList[11]
-            chart.riskage12=riskList[12]
-            chart.riskage13=riskList[13]
-            chart.riskage14=riskList[14]
-            chart.riskage15=riskList[15]
-            chart.risktarget=riskList[0]
-            chart.save()
+            if chart.count() != 0:
+                chartData = models.RwDataChart.objects.get(id= proposalID)
+                chartData.riskage1=riskList[1]
+                chartData.riskage2=riskList[2]
+                chartData.riskage3=riskList[3]
+                chartData.riskage4=riskList[4]
+                chartData.riskage5=riskList[5]
+                chartData.riskage6=riskList[6]
+                chartData.riskage7=riskList[7]
+                chartData.riskage8=riskList[8]
+                chartData.riskage9=riskList[9]
+                chartData.riskage10=riskList[10]
+                chartData.riskage11=riskList[11]
+                chartData.riskage12=riskList[12]
+                chartData.riskage13=riskList[13]
+                chartData.riskage14=riskList[14]
+                chartData.riskage15=riskList[15]
+                chartData.risktarget=riskList[0]
+                chartData.save()
+            else:
+                chartData = models.RwDataChart(id=rwassessment, riskage1=riskList[1], riskage2=riskList[2],
+                                               riskage3=riskList[3],
+                                               riskage4=riskList[4], riskage5=riskList[5], riskage6=riskList[6],
+                                               riskage7=riskList[7],
+                                               riskage8=riskList[8], riskage9=riskList[9], riskage10=riskList[10],
+                                               riskage11=riskList[11],
+                                               riskage12=riskList[12], riskage13=riskList[13], riskage14=riskList[14],
+                                               riskage15=riskList[15], risktarget=riskList[0])
+                chartData.save()
             return redirect('damgeFactor', proposalID= proposalID)
     except:
         raise Http404
@@ -3675,17 +3701,34 @@ def FullyConsequence(request, proposalID):
             return render(request, 'FacilityUI/risk_summary/fullyNormalConsequence.html', {'data': data, 'proposalID':proposalID, 'ass':rwAss})
     except:
         raise Http404
-
 def RiskChart(request, proposalID):
-    rwAssessment = models.RwAssessment.objects.get(id= proposalID)
-    chart = models.RwDataChart.objects.get(id= proposalID)
-    assessmentDate = rwAssessment.assessmentdate
-    dataChart = []
-    dataLabel = []
-    dataTarget = []
-    dataLabel = []
-    return render(request, 'FacilityUI/risk_summary/riskChart.html')
-
+    try:
+        rwAssessment = models.RwAssessment.objects.get(id= proposalID)
+        rwFullpof = models.RwFullPof.objects.get(id= proposalID)
+        rwFullcof = models.RwFullFcof.objects.get(id= proposalID)
+        risk = rwFullpof.pofap1 * rwFullcof.fcofvalue
+        chart = models.RwDataChart.objects.get(id= proposalID)
+        assessmentDate = rwAssessment.assessmentdate
+        dataChart = [risk, chart.riskage1, chart.riskage2, chart.riskage3, chart.riskage4, chart.riskage5, chart.riskage6,
+                     chart.riskage7, chart.riskage8, chart.riskage9, chart.riskage9, chart.riskage10, chart.riskage11,
+                     chart.riskage12, chart.riskage13, chart.riskage14, chart.riskage15]
+        dataLabel = [date2Str.date2str(assessmentDate), date2Str.date2str(date2Str.dateFuture(assessmentDate,1)),
+                     date2Str.date2str(date2Str.dateFuture(assessmentDate, 2)),date2Str.date2str(date2Str.dateFuture(assessmentDate,3)),
+                     date2Str.date2str(date2Str.dateFuture(assessmentDate, 4)),date2Str.date2str(date2Str.dateFuture(assessmentDate,5)),
+                     date2Str.date2str(date2Str.dateFuture(assessmentDate, 6)),date2Str.date2str(date2Str.dateFuture(assessmentDate,7)),
+                     date2Str.date2str(date2Str.dateFuture(assessmentDate, 8)),date2Str.date2str(date2Str.dateFuture(assessmentDate,9)),
+                     date2Str.date2str(date2Str.dateFuture(assessmentDate, 10)),date2Str.date2str(date2Str.dateFuture(assessmentDate,11)),
+                     date2Str.date2str(date2Str.dateFuture(assessmentDate, 12)),date2Str.date2str(date2Str.dateFuture(assessmentDate,13)),
+                     date2Str.date2str(date2Str.dateFuture(assessmentDate, 14))]
+        dataTarget = [chart.risktarget,chart.risktarget,chart.risktarget,chart.risktarget,chart.risktarget,chart.risktarget,
+                      chart.risktarget,chart.risktarget,chart.risktarget,chart.risktarget,chart.risktarget,chart.risktarget,
+                      chart.risktarget,chart.risktarget,chart.risktarget,chart.risktarget]
+        endLabel = date2Str.date2str(date2Str.dateFuture(assessmentDate, 15))
+        content = {'label': dataLabel, 'data':dataChart, 'target':dataTarget, 'endLabel':endLabel, 'proposalname':rwAssessment.proposalname,
+                   'proposalID':rwAssessment.id, 'componentID':rwAssessment.componentid_id}
+        return render(request, 'FacilityUI/risk_summary/riskChart.html', content)
+    except:
+        raise Http404
 def ExportExcel(request, index, type):
     try:
         return export_data.excelExport(index, type)
