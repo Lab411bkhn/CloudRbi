@@ -2,21 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cabab71a-8481-4181-86d9-840fbd700d74" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/cloud/static/image/abc.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RbiCloud/urls.py" afterPath="$PROJECT_DIR$/RbiCloud/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cloud/process/RBI/DM_CAL.py" afterPath="$PROJECT_DIR$/cloud/process/RBI/DM_CAL.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cloud/process/WebUI/date2Str.py" afterPath="$PROJECT_DIR$/cloud/process/WebUI/date2Str.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cloud/views.py" afterPath="$PROJECT_DIR$/cloud/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/BaseUI/BaseFacility/baseRiskSummary.html" afterPath="$PROJECT_DIR$/templates/BaseUI/BaseFacility/baseRiskSummary.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/FacilityUI/proposal/proposalNormalEdit.html" afterPath="$PROJECT_DIR$/templates/FacilityUI/proposal/proposalNormalEdit.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/FacilityUI/proposal/proposalNormalNew.html" afterPath="$PROJECT_DIR$/templates/FacilityUI/proposal/proposalNormalNew.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/FacilityUI/proposal/proposalTankEdit.html" afterPath="$PROJECT_DIR$/templates/FacilityUI/proposal/proposalTankEdit.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/FacilityUI/risk_summary/dfFull.html" afterPath="$PROJECT_DIR$/templates/FacilityUI/risk_summary/dfFull.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/FacilityUI/risk_summary/fullyBottomConsequence.html" afterPath="$PROJECT_DIR$/templates/FacilityUI/risk_summary/fullyBottomConsequence.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/FacilityUI/risk_summary/fullyNormalConsequence.html" afterPath="$PROJECT_DIR$/templates/FacilityUI/risk_summary/fullyNormalConsequence.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/FacilityUI/risk_summary/fullyShellConsequence.html" afterPath="$PROJECT_DIR$/templates/FacilityUI/risk_summary/fullyShellConsequence.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/FacilityUI/risk_summary/riskChart.html" afterPath="$PROJECT_DIR$/templates/FacilityUI/risk_summary/riskChart.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/FacilityUI/risk_summary/riskMatrix.html" afterPath="$PROJECT_DIR$/templates/FacilityUI/risk_summary/riskMatrix.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RbiCloud/settings.py" afterPath="$PROJECT_DIR$/RbiCloud/settings.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/BaseUI/BaseWeb/base.html" afterPath="$PROJECT_DIR$/templates/BaseUI/BaseWeb/base.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -48,8 +37,8 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/cloud/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5882">
-              <caret line="2650" column="46" lean-forward="false" selection-start-line="2650" selection-start-column="46" selection-end-line="2650" selection-end-column="46" />
+            <state relative-caret-position="2482">
+              <caret line="3695" column="62" lean-forward="false" selection-start-line="3695" selection-start-column="62" selection-end-line="3695" selection-end-column="62" />
               <folding>
                 <element signature="e#0#36#0" expanded="true" />
                 <element signature="e#1729#3018#0" expanded="false" />
@@ -71,12 +60,12 @@
                 <element signature="e#26274#67596#0" expanded="false" />
                 <element signature="e#26295#26577#0" expanded="false" />
                 <element signature="e#67636#112355#0" expanded="false" />
+                <element signature="e#112399#158222#0" expanded="false" />
                 <element signature="e#157538#158221#0" expanded="false" />
                 <element signature="e#158262#204726#0" expanded="false" />
                 <element signature="e#203993#204725#0" expanded="false" />
                 <element signature="e#204768#206323#0" expanded="false" />
                 <element signature="e#206372#209429#0" expanded="false" />
-                <element signature="e#209477#217066#0" expanded="false" />
                 <element signature="e#217107#219603#0" expanded="false" />
                 <element signature="e#219647#219737#0" expanded="false" />
               </folding>
@@ -84,21 +73,41 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DM_CAL.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/cloud/process/RBI/DM_CAL.py">
+      <file leaf-file-name="base.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/BaseUI/BaseWeb/base.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="28812">
-              <caret line="1934" column="67" lean-forward="false" selection-start-line="1934" selection-start-column="67" selection-end-line="1934" selection-end-column="67" />
+            <state relative-caret-position="595">
+              <caret line="35" column="12" lean-forward="false" selection-start-line="35" selection-start-column="12" selection-end-line="35" selection-end-column="12" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="DM_CAL.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/cloud/process/RBI/DM_CAL.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="4165">
+              <caret line="253" column="23" lean-forward="false" selection-start-line="253" selection-start-column="23" selection-end-line="253" selection-end-column="23" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="settings.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/RbiCloud/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="87" column="6" lean-forward="true" selection-start-line="87" selection-start-column="6" selection-end-line="88" selection-end-column="3" />
+            <state relative-caret-position="17">
+              <caret line="78" column="0" lean-forward="true" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="riskChart.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/FacilityUI/risk_summary/riskChart.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="32" column="27" lean-forward="false" selection-start-line="32" selection-start-column="27" selection-end-line="32" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -142,7 +151,6 @@
       <find>attr('checked', 'checked');</find>
       <find>attr('disabled', 'disabled');</find>
       <find>nicke</find>
-      <find>data['EquipmentCost']</find>
       <find>data['EquipmentCost']</find>
       <find>Equipment</find>
       <find>EquipmentC</find>
@@ -189,7 +197,6 @@
         <option value="$PROJECT_DIR$/templates/FacilityUI/risk_excel/tableExcel.html" />
         <option value="$PROJECT_DIR$/cloud/static/css/base.css" />
         <option value="$PROJECT_DIR$/templates/Home/index.html" />
-        <option value="$PROJECT_DIR$/templates/BaseUI/BaseWeb/base.html" />
         <option value="$PROJECT_DIR$/cloud/process/WebUI/date2Str.py" />
         <option value="$PROJECT_DIR$/RbiCloud/urls.py" />
         <option value="$PROJECT_DIR$/templates/BaseUI/BaseFacility/baseRiskSummary.html" />
@@ -198,13 +205,14 @@
         <option value="$PROJECT_DIR$/templates/FacilityUI/risk_summary/fullyNormalConsequence.html" />
         <option value="$PROJECT_DIR$/templates/FacilityUI/risk_summary/fullyShellConsequence.html" />
         <option value="$PROJECT_DIR$/templates/FacilityUI/risk_summary/riskMatrix.html" />
-        <option value="$PROJECT_DIR$/RbiCloud/settings.py" />
         <option value="$PROJECT_DIR$/templates/FacilityUI/risk_summary/riskChart.html" />
         <option value="$PROJECT_DIR$/templates/FacilityUI/proposal/proposalTankEdit.html" />
         <option value="$PROJECT_DIR$/templates/FacilityUI/proposal/proposalNormalEdit.html" />
         <option value="$PROJECT_DIR$/templates/FacilityUI/proposal/proposalNormalNew.html" />
         <option value="$PROJECT_DIR$/cloud/views.py" />
         <option value="$PROJECT_DIR$/cloud/process/RBI/DM_CAL.py" />
+        <option value="$PROJECT_DIR$/templates/BaseUI/BaseWeb/base.html" />
+        <option value="$PROJECT_DIR$/RbiCloud/settings.py" />
       </list>
     </option>
   </component>
@@ -214,8 +222,8 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
-    <option name="x" value="683" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="637" />
     <option name="width" value="683" />
     <option name="height" value="728" />
   </component>
@@ -356,25 +364,25 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="E:/K_A python web/rbi/rbi" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="E:\RbiCloud\templates\FacilityUI\facility" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\RbiCloud\cloud\static\image" />
       <recent name="E:\RbiCloud\cloud" />
       <recent name="E:\RbiCloud\templates" />
       <recent name="E:\RbiCloud\cloud\static" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\RbiCloud\templates\FacilityUI\facility" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -478,20 +486,19 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28744328" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18154311" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32843137" sideWeight="0.5121029" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980332" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3267974" sideWeight="0.48789713" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3267974" sideWeight="0.48789713" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32843137" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32843137" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980332" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -536,7 +543,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/templates/FacilityUI/testCase.html" />
     <entry file="file://$PROJECT_DIR$/templates/FacilityUI/proposal/demo.html" />
     <entry file="file://$PROJECT_DIR$/templates/FacilityUI/component/componentEdit.html">
       <provider selected="true" editor-type-id="text-editor">
@@ -681,6 +687,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
           <caret line="74" column="24" lean-forward="false" selection-start-line="74" selection-start-column="20" selection-end-line="74" selection-end-column="24" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -772,13 +779,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="901">
           <caret line="59" column="80" lean-forward="false" selection-start-line="59" selection-start-column="80" selection-end-line="59" selection-end-column="80" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/BaseUI/BaseWeb/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="123">
-          <caret line="43" column="0" lean-forward="false" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -814,6 +815,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="15" column="14" lean-forward="true" selection-start-line="15" selection-start-column="14" selection-end-line="15" selection-end-column="14" />
+          <folding>
+            <element signature="e#556#562#0#HTML" expanded="false" />
+            <element signature="e#661#667#0#HTML" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -821,13 +826,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="8" column="63" lean-forward="false" selection-start-line="8" selection-start-column="63" selection-end-line="8" selection-end-column="63" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/FacilityUI/risk_summary/riskChart.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="61" column="19" lean-forward="false" selection-start-line="61" selection-start-column="19" selection-end-line="61" selection-end-column="19" />
         </state>
       </provider>
     </entry>
@@ -852,18 +850,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/RbiCloud/settings.py">
+    <entry file="file://$PROJECT_DIR$/cloud/static/image/CortekLogo_hoang.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cloud/process/RBI/DM_CAL.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="87" column="6" lean-forward="true" selection-start-line="87" selection-start-column="6" selection-end-line="88" selection-end-column="3" />
+        <state relative-caret-position="4165">
+          <caret line="253" column="23" lean-forward="false" selection-start-line="253" selection-start-column="23" selection-end-line="253" selection-end-column="23" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/cloud/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5882">
-          <caret line="2650" column="46" lean-forward="false" selection-start-line="2650" selection-start-column="46" selection-end-line="2650" selection-end-column="46" />
+        <state relative-caret-position="2482">
+          <caret line="3695" column="62" lean-forward="false" selection-start-line="3695" selection-start-column="62" selection-end-line="3695" selection-end-column="62" />
           <folding>
             <element signature="e#0#36#0" expanded="true" />
             <element signature="e#1729#3018#0" expanded="false" />
@@ -885,22 +888,38 @@
             <element signature="e#26274#67596#0" expanded="false" />
             <element signature="e#26295#26577#0" expanded="false" />
             <element signature="e#67636#112355#0" expanded="false" />
+            <element signature="e#112399#158222#0" expanded="false" />
             <element signature="e#157538#158221#0" expanded="false" />
             <element signature="e#158262#204726#0" expanded="false" />
             <element signature="e#203993#204725#0" expanded="false" />
             <element signature="e#204768#206323#0" expanded="false" />
             <element signature="e#206372#209429#0" expanded="false" />
-            <element signature="e#209477#217066#0" expanded="false" />
             <element signature="e#217107#219603#0" expanded="false" />
             <element signature="e#219647#219737#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cloud/process/RBI/DM_CAL.py">
+    <entry file="file://$PROJECT_DIR$/templates/BaseUI/BaseWeb/base.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="28812">
-          <caret line="1934" column="67" lean-forward="false" selection-start-line="1934" selection-start-column="67" selection-end-line="1934" selection-end-column="67" />
+        <state relative-caret-position="595">
+          <caret line="35" column="12" lean-forward="false" selection-start-line="35" selection-start-column="12" selection-end-line="35" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/FacilityUI/risk_summary/riskChart.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="32" column="27" lean-forward="false" selection-start-line="32" selection-start-column="27" selection-end-line="32" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RbiCloud/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="78" column="0" lean-forward="true" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
           <folding />
         </state>
       </provider>
