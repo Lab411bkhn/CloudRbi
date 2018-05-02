@@ -336,7 +336,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-3" style="color: red">Operating Hydrogen Partial Pressure, psi:<span style="color: red">*</span></div>
-                        <div class="col-md-3"><input type="number" class="form-control" step="0.01" value="0" max="100000" name="OHPP" placeholder="Operator hydrogen pressure" required/></div>
+                        <div class="col-md-3"><input type="number" class="form-control" step="0.01" value="0" max="1000000000" name="OHPP" placeholder="Operator hydrogen pressure" required/></div>
                         <div class="col-md-3" style="color: red">Critical Exposure Temperature, &deg;C:<span style="color: red">*</span></div>
                         <div class="col-md-3"><input type="number" value="0" class="form-control" step="0.01" max="100000" name="CET" placeholder="Critical temp" required/></div>
                     </div>
@@ -1181,10 +1181,10 @@
           for (i = 0; i < y.length; i++) {
             // If a field is empty...
             if (y[i].value == "") {
-              // add an "invalid" class to the field:
-              y[i].className += " invalid";
-              // and set the current valid status to false
-              valid = false;
+                // add an "invalid" class to the field:
+                y[i].className += " invalid";
+                // and set the current valid status to false
+                valid = false;
             }
           }
           // If the valid status is true, mark the step as finished and valid:

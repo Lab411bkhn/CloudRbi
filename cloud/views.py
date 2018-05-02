@@ -1,3 +1,10 @@
+import os
+from django.core.wsgi import get_wsgi_application
+
+os.environ['DJANGO_SETTINGS_MODULE'] = 'RbiCloud.settings'
+application = get_wsgi_application()
+
+
 from PIL.PngImagePlugin import _idat
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render, redirect
@@ -10,6 +17,10 @@ from cloud.process.WebUI import location
 from cloud.process.WebUI import roundData
 from cloud.process.File import export_data
 from cloud.process.WebUI import date2Str
+from django.core.files.storage import FileSystemStorage
+from django.conf import settings
+from cloud.process.File import import_data as ExcelImport
+import time
 
 # Create your views here.
 def base(request):
@@ -3734,3 +3745,37 @@ def ExportExcel(request, index, type):
         return export_data.excelExport(index, type)
     except:
         raise Http404
+def upload(request):
+    try:
+        if request.method =='POST' and request.FILES['myexcelFile']:
+            myfile = request.FILES['myexcelFile']
+            fs = FileSystemStorage()
+            filename = fs.save(myfile.name, myfile)
+            uploaded_file_url = fs.url(filename)
+            url_file = settings.BASE_DIR.replace('\\', '//') + str(uploaded_file_url).replace('/', '//').replace('%20', ' ')
+            ExcelImport.importPlanProcess(url_file)
+            try:
+                os.remove(url_file)
+            except OSError:
+                pass
+            print("upload done!")
+    except:
+        raise Http404
+    return render(request, 'FacilityUI/equipment/uploadData.html')
+def uploadInspPlan(request):
+    try:
+        if request.method == 'POST' and request.FILES['myexcelFile']:
+            myfile = request.FILES['myexcelFile']
+            fs = FileSystemStorage()
+            filename = fs.save(myfile.name, myfile)
+            upload_url = fs.url(filename)
+            url_file = settings.BASE_DIR.replace('\\', '//') + str(upload_url).replace('/', '//').replace('%20', ' ')
+            ExcelImport.importInspectionPlan(url_file)
+            try:
+                os.remove(url_file)
+            except OSError:
+                pass
+    except Exception as e:
+        print(e)
+        raise Http404
+    return render(request, 'FacilityUI/equipment/uploadData.html')

@@ -1060,7 +1060,7 @@ class DM_CAL:
             AGE_COAT = self.COMPONENT_INSTALL_DATE + relativedelta(years=+5)  # Age + 5
         else:
             AGE_COAT = self.COMPONENT_INSTALL_DATE
-        TICK_SPAN = abs((datetime.now().date() - AGE_COAT.date()).days)
+        TICK_SPAN = abs((self.AssesmentDate.date() - AGE_COAT.date()).days)
         return TICK_SPAN / 365
 
     def AGE_CUI(self, age):

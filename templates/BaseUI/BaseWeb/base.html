@@ -21,16 +21,16 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
-    {#    <link rel="stylesheet" href="//resources/demos/style.css">#}
-
 
     {# library block #}
     {% block library %}{% endblock %}
-    <script>
-        $(document).ready(function(){
-            $('[data-toggle="tooltip"]').tooltip();
-        });
+    <script type="text/javascript">
+{#        $(document).ready(function(){#}
+{#            $('[data-toggle="tooltip"]').tooltip('enabled');#}
+{#        });#}
+        $('[data-toggle="tooltip"]').tooltip();
     </script>
+
 </head>
 <body>
 {# header #}
