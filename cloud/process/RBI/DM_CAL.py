@@ -1,6 +1,7 @@
 import time
 import time
 import math
+from builtins import property
 from datetime import datetime
 import  numpy as np
 from dateutil.relativedelta import relativedelta
@@ -16,7 +17,7 @@ class DM_CAL:
                  ProtectedBarrier=False, CladdingCorrosionRate=0, InternalCladding=False, NoINSP_THINNING=0,
                  EFF_THIN="E", OnlineMonitoring="", HighlyEffectDeadleg=False, ContainsDeadlegs=False,
                  TankMaintain653=False, AdjustmentSettle="", ComponentIsWeld=False,
-                 LinningType="", LINNER_ONLINE=False, LINNER_CONDITION="", YEAR_IN_SERVICE=0, INTERNAL_LINNING=False,
+                 LinningType="", LINNER_ONLINE=False, LINNER_CONDITION="", INTERNAL_LINNING=False,
                  CAUSTIC_INSP_EFF="E", CAUSTIC_INSP_NUM=0, HEAT_TREATMENT="", NaOHConcentration=0, HEAT_TRACE=False,
                  STEAM_OUT=False,
                  AMINE_INSP_EFF="E", AMINE_INSP_NUM=0, AMINE_EXPOSED=False, AMINE_SOLUTION="",
@@ -77,7 +78,6 @@ class DM_CAL:
         self.LinningType = LinningType
         self.LINNER_ONLINE = LINNER_ONLINE
         self.LINNER_CONDITION = LINNER_CONDITION
-        self.YEAR_IN_SERVICE = YEAR_IN_SERVICE
         self.INTERNAL_LINNING = INTERNAL_LINNING
 
         # SCC Caustic input
@@ -434,8 +434,8 @@ class DM_CAL:
                 SUSCEP_LINNING = "WithinLast6Years"
             else:
                 SUSCEP_LINNING = "MoreThan6Years"
-            self.YEAR_IN_SERVICE = int(self.GET_AGE()[1])
-            return DAL_CAL.POSTGRESQL.GET_TBL_65(self.YEAR_IN_SERVICE, SUSCEP_LINNING)
+            YEAR_IN_SERVICE = int(self.GET_AGE()[1])
+            return DAL_CAL.POSTGRESQL.GET_TBL_65(YEAR_IN_SERVICE, SUSCEP_LINNING)
         else:
             return DAL_CAL.POSTGRESQL.GET_TBL_64(int(round(age)), self.LinningType)
 

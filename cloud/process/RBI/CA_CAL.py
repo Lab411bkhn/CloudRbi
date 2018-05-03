@@ -1056,9 +1056,12 @@ class CA_SHELL:
         return self.FC_leak_environ() + self.FC_rupture_environ()
 
     def FC_PROD_SHELL(self):
-        obj = DAL_CAL.POSTGRESQL.GET_API_COM(self.API_COMPONENT_TYPE_NAME)
-        t = obj[0] * obj[9] + obj[1] * obj[10] + obj[2] * obj[11] + obj[3] * obj[12]
-        return t * self.PRODUCTION_COST / obj[4]
+        try:
+            obj = DAL_CAL.POSTGRESQL.GET_API_COM(self.API_COMPONENT_TYPE_NAME)
+            t = obj[0] * obj[9] + obj[1] * obj[10] + obj[2] * obj[11] + obj[3] * obj[12]
+            return t * self.PRODUCTION_COST / obj[4]
+        except:
+            return 0
 
     def fc_cmd(self):
         obj = DAL_CAL.POSTGRESQL.GET_API_COM(self.API_COMPONENT_TYPE_NAME)

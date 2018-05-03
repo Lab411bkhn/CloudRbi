@@ -287,7 +287,7 @@ def processEquipmentMaster(ws):
                                                          siteid_id=getSiteID(ws.cell(row, 4).value))
                                 mn.save()
 
-                        if checkEquipmentAvaiable(ws.cell(row, 4).value, ws.cell(row, 5).value, ws.cell(row, 2).value):
+                        if checkEquipmentAvaiable(ws.cell(row, 4).value, ws.cell(row, 5).value,ws.cell(row,0).value , ws.cell(row, 2).value):
                             if checkEquipmentExist(ws.cell(row, 0).value):
                                 eq = models.EquipmentMaster.objects.get(equipmentnumber=ws.cell(row, 0).value)
                                 eq.equipmenttypeid_id = getEquipmentTypeID(ws.cell(row, 1).value)
@@ -688,7 +688,7 @@ def processStream2(ws):
                             rwStream.save()
         elif ncol == 25:
             for row in range(1,nrow):
-                if ws.cell(row,0).value:
+                if ws.cell(row,0).value and ws.cell(row,20).value:
                     for a in listProposal:
                         if a.componentid_id == getComponentID(ws.cell(row,0).value):
                             rwStream = models.RwStream.objects.get(id= a.id)
@@ -814,7 +814,8 @@ def processCoating(ws):
                             rwCoating = models.RwCoating.objects.get(id= a.id)
                             rwCoating.internalcoating = convertTF(ws.cell(row,1).value)
                             rwCoating.externalcoating = convertTF(ws.cell(row,2).value)
-                            rwCoating.externalcoatingdate = convertDate(ws.cell(row,3).value)
+                            if ws.cell(row,3).value:
+                                rwCoating.externalcoatingdate = convertDateInsp(ws.cell(row,3).value)
                             if ws.cell(row,4).value:
                                 rwCoating.externalcoatingquality = ws.cell(row,4).value
                             rwCoating.supportconfignotallowcoatingmaint = convertTF(ws.cell(row,5).value)
@@ -852,13 +853,7 @@ def importPlanProcess(filename):
         ncol4 = ws4.ncols
         ncol5 = ws5.ncols
 
-        nrow0 = ws0.nrows
-        nrow1 = ws1.nrows
-        nrow2 = ws2.nrows
-        nrow3 = ws3.nrows
-        nrow4 = ws4.nrows
-        nrow5 = ws5.nrows
-        if (ncol0 == 32 and ncol1 == 32 and ncol2 == 18 and ncol3 == 22 and ncol4 == 22 and ncol5 == 15) or (nrow0 == 36 and nrow1 == 24 and nrow2 == 18 and nrow3 == 25 and nrow4 == 18 and nrow5 == 15):
+        if (ncol0 == 32 and ncol1 == 32 and ncol2 == 18 and ncol3 == 22 and ncol4 == 22 and ncol5 == 15) or (ncol0 == 36 and ncol1 == 24 and ncol2 == 18 and ncol3 == 25 and ncol4 == 18 and ncol5 == 15):
             # step 1: processing data Equipment master
             processEquipmentMaster(ws0)
             # step 2: processing data Component master
@@ -873,5 +868,7 @@ def importPlanProcess(filename):
             processStream2(ws3)
             processMaterial(ws4)
             processCoating(ws5)
-    except:
+    except Exception as e:
+        print("Exception at import")
+        print(e)
         raise Http404
