@@ -1077,10 +1077,6 @@ class CA_SHELL:
             return self.fc_cmd() + self.FC_environ_shell() + self.FC_PROD_SHELL()
 
 
-
-
-
-
 class CA_TANK_BOTTOM:
     def __init__(self, Soil_type, TANK_FLUID, Swg, TANK_DIAMETER, FLUID_HEIGHT, API_COMPONENT_TYPE_NAME, PREVENTION_BARRIER, EnvironSensitivity, MATERIAL_COST, PRODUCTION_COST, P_lvdike,P_onsite,P_offsite):
         self.Soil_type = Soil_type
