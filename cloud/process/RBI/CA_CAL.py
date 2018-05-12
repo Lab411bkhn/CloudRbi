@@ -319,7 +319,7 @@ class CA_NORMAL:
         return b_cont[select - 1]
 
     def a_inj(self, select):
-        data = DAL_CAL.POSTGRESQL.GET_TBL_58(self.FLUID)
+        data = DAL_CAL.POSTGRESQL.GET_TBL_59(self.FLUID)
         a_inj = [0, 0, 0, 0]
         if(self.GET_RELEASE_PHASE() == "Gas"):
             a_inj[0] = data[0]
@@ -334,7 +334,7 @@ class CA_NORMAL:
         return a_inj[select - 1]
 
     def b_inj(self, select):
-        data = DAL_CAL.POSTGRESQL.GET_TBL_58(self.FLUID)
+        data = DAL_CAL.POSTGRESQL.GET_TBL_59(self.FLUID)
         b_inj = [0, 0, 0, 0]
         if (self.GET_RELEASE_PHASE() == "Gas"):
             b_inj[0] = data[1]
