@@ -82,10 +82,10 @@ WSGI_APPLICATION = 'RbiCloud.wsgi.application'
 DATABASES = {
      'default': {
          'ENGINE': 'django.db.backends.postgresql_psycopg2',
-         'NAME': 'd2qvophktmkppf',
-         'USER': 'zrlcgmplhkwdxj',
-         'PASSWORD': '1f8c507e0ae0a8478f6ac948c08fd301053b2b1992324c630a8500490187a771',
-         'HOST': 'ec2-54-247-111-19.eu-west-1.compute.amazonaws.com',
+         'NAME': 'djangorbi',
+         'USER': 'postgres',
+         'PASSWORD': 'root',
+         'HOST': 'localhost',
          'PORT': '5432',
      }
   }
@@ -134,7 +134,7 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
 
-STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+# STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 TEMPLATE_DIRS = (os.path.join(BASE_DIR,  'templates'),)
 

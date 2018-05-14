@@ -1918,7 +1918,7 @@ class DM_CAL:
         return TOTAL_DF_API
 
     def DF_TOTAL_GENERAL(self, i):
-        TOTAL_DF_API = self.DF_THINNING_TOTAL_API(i), self.DF_EXT_TOTAL_API(i) + self.DF_SSC_TOTAL_API(
+        TOTAL_DF_API = self.DF_THINNING_TOTAL_API(i) + self.DF_EXT_TOTAL_API(i) + self.DF_SSC_TOTAL_API(
             i) + self.DF_HTHA_API(i) + self.DF_BRIT_TOTAL_API() + self.DF_PIPE_API()
         return TOTAL_DF_API
 
@@ -1936,12 +1936,27 @@ class DM_CAL:
             data.append(risk)
         return data
 
+    def DF_LIST_16_GENERAL(self,FC_Total, GFF, FSM, Risk_Target):
+        data = []
+        data.append(Risk_Target)
+        for a in range(1,16):
+            risk = self.convertRisk(self.DF_TOTAL_GENERAL(a) * GFF * FSM) * FC_Total
+            data.append(risk)
+        return data
+
     def INSP_DUE_DATE(self, FC_Total, GFF, FSM, Risk_Target):
         DF_TARGET = Risk_Target/(FC_Total * GFF * FSM)
         for a in range(1,16):
-            if self.DF_TOTAL_API(a) > DF_TARGET:
+            if self.DF_TOTAL_API(a) >= DF_TARGET:
                 break
         return self.AssesmentDate + relativedelta(years= a)
+
+    def INSP_DUE_DATE_General(self, FC_total, GFF, FSM, Risk_Target):
+        DF_TARGET = Risk_Target/(FC_total*GFF*FSM)
+        for a in range(1,16):
+            if self.DF_TOTAL_GENERAL(a) >= DF_TARGET:
+                break
+        return self.AssesmentDate + relativedelta(year=a)
 
     def ISDF(self):
         DM_ID = [8, 9, 61, 57, 73, 69, 60, 72, 62, 70, 67, 34, 32, 66, 63, 68, 2, 18, 1, 14, 10]

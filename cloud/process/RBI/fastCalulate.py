@@ -220,10 +220,19 @@ def calculateNormal(proposalID):
         TOTAL_DF_API1 = dm_cal.DF_TOTAL_API(0)
         TOTAL_DF_API2 = dm_cal.DF_TOTAL_API(3)
         TOTAL_DF_API3 = dm_cal.DF_TOTAL_API(6)
+
+        TOTAL_DF_GENERAL_1 = dm_cal.DF_TOTAL_GENERAL(0)
+        TOTAL_DF_GENERAL_2 = dm_cal.DF_TOTAL_GENERAL(3)
+        TOTAL_DF_GENERAL_3 = dm_cal.DF_TOTAL_GENERAL(6)
+
         gffTotal = models.ApiComponentType.objects.get(apicomponenttypeid=comp.apicomponenttypeid).gfftotal
         pofap1 = pofConvert.convert(TOTAL_DF_API1 * datafaci.managementfactor * gffTotal)
         pofap2 = pofConvert.convert(TOTAL_DF_API2 * datafaci.managementfactor * gffTotal)
         pofap3 = pofConvert.convert(TOTAL_DF_API3 * datafaci.managementfactor * gffTotal)
+
+        pof_general_ap1 = pofConvert.convert(TOTAL_DF_GENERAL_1 * datafaci.managementfactor * gffTotal)
+        pof_general_ap2 = pofConvert.convert(TOTAL_DF_GENERAL_2 * datafaci.managementfactor * gffTotal)
+        pof_general_ap3 = pofConvert.convert(TOTAL_DF_GENERAL_3 * datafaci.managementfactor * gffTotal)
         # full pof
         if countRefullPOF.count() != 0:
             refullPOF = models.RwFullPof.objects.get(id=proposalID)
@@ -246,7 +255,6 @@ def calculateNormal(proposalID):
             refullPOF.fatigueap2 = dm_cal.DF_PIPE_API()
             refullPOF.fatigueap3 = dm_cal.DF_PIPE_API()
             refullPOF.fms = datafaci.managementfactor
-            refullPOF.thinningtype = "Local"
             refullPOF.thinninglocalap1 = max(dm_cal.DF_THINNING_TOTAL_API(0),
                                              dm_cal.DF_EXT_TOTAL_API(0))
             refullPOF.thinninglocalap2 = max(dm_cal.DF_THINNING_TOTAL_API(3),
@@ -256,16 +264,28 @@ def calculateNormal(proposalID):
             refullPOF.thinninggeneralap1 = dm_cal.DF_THINNING_TOTAL_API(0) + dm_cal.DF_EXT_TOTAL_API(0)
             refullPOF.thinninggeneralap2 = dm_cal.DF_THINNING_TOTAL_API(3) + dm_cal.DF_EXT_TOTAL_API(3)
             refullPOF.thinninggeneralap3 = dm_cal.DF_THINNING_TOTAL_API(6) + dm_cal.DF_EXT_TOTAL_API(6)
-            refullPOF.totaldfap1 = TOTAL_DF_API1
-            refullPOF.totaldfap2 = TOTAL_DF_API2
-            refullPOF.totaldfap3 = TOTAL_DF_API3
-            refullPOF.pofap1 = pofap1
-            refullPOF.pofap2 = pofap2
-            refullPOF.pofap3 = pofap3
+            if refullPOF.thinningtype == "General":
+                refullPOF.totaldfap1 = TOTAL_DF_GENERAL_1
+                refullPOF.totaldfap2 = TOTAL_DF_GENERAL_2
+                refullPOF.totaldfap3 = TOTAL_DF_GENERAL_3
+                refullPOF.pofap1 = pof_general_ap1
+                refullPOF.pofap2 = pof_general_ap2
+                refullPOF.pofap3 = pof_general_ap3
+                refullPOF.pofap1category = dm_cal.PoFCategory(TOTAL_DF_GENERAL_1)
+                refullPOF.pofap2category = dm_cal.PoFCategory(TOTAL_DF_GENERAL_2)
+                refullPOF.pofap3category = dm_cal.PoFCategory(TOTAL_DF_GENERAL_3)
+            else:
+                refullPOF.thinningtype = "Local"
+                refullPOF.totaldfap1 = TOTAL_DF_API1
+                refullPOF.totaldfap2 = TOTAL_DF_API2
+                refullPOF.totaldfap3 = TOTAL_DF_API3
+                refullPOF.pofap1 = pofap1
+                refullPOF.pofap2 = pofap2
+                refullPOF.pofap3 = pofap3
+                refullPOF.pofap1category = dm_cal.PoFCategory(TOTAL_DF_API1)
+                refullPOF.pofap2category = dm_cal.PoFCategory(TOTAL_DF_API2)
+                refullPOF.pofap3category = dm_cal.PoFCategory(TOTAL_DF_API3)
             refullPOF.gfftotal = gffTotal
-            refullPOF.pofap1category = dm_cal.PoFCategory(TOTAL_DF_API1)
-            refullPOF.pofap2category = dm_cal.PoFCategory(TOTAL_DF_API2)
-            refullPOF.pofap3category = dm_cal.PoFCategory(TOTAL_DF_API3)
             refullPOF.save()
         else:
             refullPOF = models.RwFullPof(id=rwassessment, thinningap1=dm_cal.DF_THINNING_TOTAL_API(0),
@@ -377,7 +397,12 @@ def calculateNormal(proposalID):
                                              popdens=rwinputca.personal_density, injcost=rwinputca.injure_cost)
             refullfc.save()
         #Chart data
-        riskList = dm_cal.DF_LIST_16(calv1.fc_total, gffTotal, datafaci.managementfactor, target.risktarget_fc)
+        fcTotal = models.RwFullFcof.objects.get(id=proposalID).fcofvalue
+        fullPOF = models.RwFullPof.objects.get(id= proposalID)
+        if fullPOF.thinningtype == "General":
+            riskList = dm_cal.DF_LIST_16_GENERAL(fcTotal, gffTotal, datafaci.managementfactor, target.risktarget_fc)
+        else:
+            riskList = dm_cal.DF_LIST_16(fcTotal, gffTotal, datafaci.managementfactor, target.risktarget_fc)
         if chart.count() != 0:
             chartData = models.RwDataChart.objects.get(id=proposalID)
             chartData.riskage1 = riskList[1]
@@ -410,6 +435,7 @@ def calculateNormal(proposalID):
             chartData.save()
     except Exception as e:
         print("Exception at fast calculate")
+        print('Error on line {}'.format(sys.exc_info()[-1].tb_lineno), type(e).__name__, e)
         print(e)
 
 def calculateTank(proposalID):
@@ -763,10 +789,20 @@ def calculateTank(proposalID):
         TOTAL_DF_API1 = dm_cal.DF_TOTAL_API(0)
         TOTAL_DF_API2 = dm_cal.DF_TOTAL_API(3)
         TOTAL_DF_API3 = dm_cal.DF_TOTAL_API(6)
+
+        TOTAL_DF_GENERAL_1 = dm_cal.DF_TOTAL_GENERAL(0)
+        TOTAL_DF_GENERAL_2 = dm_cal.DF_TOTAL_GENERAL(3)
+        TOTAL_DF_GENERAL_3 = dm_cal.DF_TOTAL_GENERAL(6)
+
         gffTotal = models.ApiComponentType.objects.get(apicomponenttypeid=comp.apicomponenttypeid).gfftotal
         pofap1 = pofConvert.convert(float(TOTAL_DF_API1) * float(datafaci.managementfactor) * float(gffTotal))
         pofap2 = pofConvert.convert(float(TOTAL_DF_API2) * float(datafaci.managementfactor) * float(gffTotal))
         pofap3 = pofConvert.convert(float(TOTAL_DF_API3) * float(datafaci.managementfactor) * float(gffTotal))
+
+        pof_general_ap1 = pofConvert.convert(TOTAL_DF_GENERAL_1 * datafaci.managementfactor * gffTotal)
+        pof_general_ap2 = pofConvert.convert(TOTAL_DF_GENERAL_2 * datafaci.managementfactor * gffTotal)
+        pof_general_ap3 = pofConvert.convert(TOTAL_DF_GENERAL_3 * datafaci.managementfactor * gffTotal)
+
         # thinningtype = General or Local
         if countRefullPOF.count() != 0:
             refullPOF = models.RwFullPof.objects.get(id=proposalID)
@@ -789,23 +825,34 @@ def calculateTank(proposalID):
             refullPOF.fatigueap2 = dm_cal.DF_PIPE_API()
             refullPOF.fatigueap3 = dm_cal.DF_PIPE_API()
             refullPOF.fms = datafaci.managementfactor
-            refullPOF.thinningtype = "Local"
             refullPOF.thinninglocalap1 = max(dm_cal.DF_THINNING_TOTAL_API(0), dm_cal.DF_EXT_TOTAL_API(0))
             refullPOF.thinninglocalap2 = max(dm_cal.DF_THINNING_TOTAL_API(3), dm_cal.DF_EXT_TOTAL_API(3))
             refullPOF.thinninglocalap3 = max(dm_cal.DF_THINNING_TOTAL_API(6), dm_cal.DF_EXT_TOTAL_API(6))
             refullPOF.thinninggeneralap1 = dm_cal.DF_THINNING_TOTAL_API(0) + dm_cal.DF_EXT_TOTAL_API(0)
             refullPOF.thinninggeneralap2 = dm_cal.DF_THINNING_TOTAL_API(3) + dm_cal.DF_EXT_TOTAL_API(3)
             refullPOF.thinninggeneralap3 = dm_cal.DF_THINNING_TOTAL_API(6) + dm_cal.DF_EXT_TOTAL_API(6)
-            refullPOF.totaldfap1 = TOTAL_DF_API1
-            refullPOF.totaldfap2 = TOTAL_DF_API2
-            refullPOF.totaldfap3 = TOTAL_DF_API3
-            refullPOF.pofap1 = pofap1
-            refullPOF.pofap2 = pofap2
-            refullPOF.pofap3 = pofap3
+            if refullPOF.thinningtype == "General":
+                refullPOF.totaldfap1 = TOTAL_DF_GENERAL_1
+                refullPOF.totaldfap2 = TOTAL_DF_GENERAL_2
+                refullPOF.totaldfap3 = TOTAL_DF_GENERAL_3
+                refullPOF.pofap1 = pof_general_ap1
+                refullPOF.pofap2 = pof_general_ap2
+                refullPOF.pofap3 = pof_general_ap3
+                refullPOF.pofap1category = dm_cal.PoFCategory(TOTAL_DF_GENERAL_1)
+                refullPOF.pofap2category = dm_cal.PoFCategory(TOTAL_DF_GENERAL_2)
+                refullPOF.pofap3category = dm_cal.PoFCategory(TOTAL_DF_GENERAL_3)
+            else:
+                refullPOF.thinningtype = "Local"
+                refullPOF.totaldfap1 = TOTAL_DF_API1
+                refullPOF.totaldfap2 = TOTAL_DF_API2
+                refullPOF.totaldfap3 = TOTAL_DF_API3
+                refullPOF.pofap1 = pofap1
+                refullPOF.pofap2 = pofap2
+                refullPOF.pofap3 = pofap3
+                refullPOF.pofap1category = dm_cal.PoFCategory(TOTAL_DF_API1)
+                refullPOF.pofap2category = dm_cal.PoFCategory(TOTAL_DF_API2)
+                refullPOF.pofap3category = dm_cal.PoFCategory(TOTAL_DF_API3)
             refullPOF.gfftotal = gffTotal
-            refullPOF.pofap1category = dm_cal.PoFCategory(TOTAL_DF_API1)
-            refullPOF.pofap2category = dm_cal.PoFCategory(TOTAL_DF_API2)
-            refullPOF.pofap3category = dm_cal.PoFCategory(TOTAL_DF_API3)
             refullPOF.save()
         else:
             refullPOF = models.RwFullPof(id=rwassessment, thinningap1=dm_cal.DF_THINNING_TOTAL_API(0),
@@ -871,7 +918,11 @@ def calculateTank(proposalID):
                                          prodcost=rwinputca.productioncost)
             refullfc.save()
         # data for chart
-        riskList = dm_cal.DF_LIST_16(FC_TOTAL, gffTotal, datafaci.managementfactor, target.risktarget_fc)
+        fullPOF = models.RwFullPof.objects.get(id=proposalID)
+        if fullPOF.thinningtype == "General":
+            riskList = dm_cal.DF_LIST_16_GENERAL(FC_TOTAL, gffTotal, datafaci.managementfactor, target.risktarget_fc)
+        else:
+            riskList = dm_cal.DF_LIST_16(FC_TOTAL, gffTotal, datafaci.managementfactor, target.risktarget_fc)
         if chart.count() != 0:
             chartData = models.RwDataChart.objects.get(id=proposalID)
             chartData.riskage1 = riskList[1]

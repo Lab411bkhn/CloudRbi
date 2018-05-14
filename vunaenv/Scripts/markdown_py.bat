@@ -1,1 +1,0 @@
-@"E:\RbiCloud\vunaenv\Scripts\python.exe" "E:\RbiCloud\vunaenv\Scripts\markdown_py" %*

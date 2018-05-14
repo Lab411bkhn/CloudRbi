@@ -45,7 +45,7 @@ def base_designcode(request):
 def base_manufacture(request):
     return render(request, 'FacilityUI/manufacture/manufactureListDisplay.html')
 ################## 404 Error ###########################
-def handler404(request, exception):
+def handler404(request):
     return render(request, '404/404.html', locals())
 ################ Business UI Control ###################
 def ListFacilities(request, siteID):
@@ -2484,6 +2484,11 @@ def FullyDamageFactor(request, proposalID):
         data['pofap1category'] = df.pofap1category
         data['pofap2category'] = df.pofap2category
         data['pofap3category'] = df.pofap3category
+        if request.method == 'POST':
+            df.thinningtype = request.POST.get('thinningType')
+            df.save()
+            ReCalculate.ReCalculate(proposalID)
+            return redirect('damgeFactor', proposalID)
     except Exception as e:
         print(e)
         raise Http404
