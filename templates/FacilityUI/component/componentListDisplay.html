@@ -27,7 +27,7 @@
                         <td style="text-align: center"><input type="checkbox" name="{{ a.componentid }}"></td>
                         <td style="text-align: center"><a href="{% url 'proposalDisplay' a.componentid %}">{{ a.componentnumber }}</a></td>
                         <td style="text-align: center">{{ a.componentname }}</td>
-                        <td align="center"><a><i class="fa fa-print" ></i></a></td>
+                        <td align="center"><a href="{% url 'exportData' a.componentid 'Component'%}"><i class="fa fa-print" ></i></a></td>
                     </tr>
                     {% endfor %}
                 </tbody>
