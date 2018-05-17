@@ -97,8 +97,13 @@ def checkData(data):
 def getC_risk(idx):
     dataGeneral = {}
     new = models.RwAssessment.objects.filter(componentid=idx).order_by('-id')
-    if new.count() != 0:
-        newest = new[0]
+    idxData = 0
+    for rwNewAss in new:
+        if models.RwFullFcof.objects.filter(id= rwNewAss.id).count() != 0 and models.RwFullPof.objects.filter(id= rwNewAss.id).count() != 0:
+            idxData = rwNewAss.id
+            break
+    if idxData != 0:
+        newest = models.RwAssessment.objects.get(id= idxData)
         component = models.ComponentMaster.objects.get(componentid=idx)
         if component.componenttypeid_id == 8 or component.componenttypeid_id == 12 or component.componenttypeid_id == 14 or component.componenttypeid_id == 15:
             isTank = 1
@@ -174,8 +179,14 @@ def getS_risk(idx):
 def getC_insp(idx):
     data = []
     new = models.RwAssessment.objects.filter(componentid=idx).order_by('-id')
-    if new.count() != 0:
-        newest = new[0]
+    idxData = 0
+    for rwNewAss in new:
+        if models.RwFullFcof.objects.filter(id=rwNewAss.id).count() != 0 and models.RwFullPof.objects.filter(
+                id=rwNewAss.id).count() != 0:
+            idxData = rwNewAss.id
+            break
+    if idxData != 0:
+        newest = models.RwAssessment.objects.get(id=idxData)
         equip = models.EquipmentMaster.objects.get(equipmentid= newest.equipmentid_id)
         insp = models.RwDamageMechanism.objects.filter(id_dm= newest.id)
         if insp.count() > 0:
@@ -221,7 +232,9 @@ def getS_insp(idx):
 def getP_risk(idx):
     dataGeneral = {}
     new = models.RwAssessment.objects.filter(id= idx)
-    if new.count() != 0:
+    newPof = models.RwFullPof.objects.filter(id= idx)
+    newFcof = models.RwFullFcof.objects.filter(id=idx)
+    if new.count() != 0 and newPof.count() != 0 and newFcof.count() != 0:
         newest = new[0]
         component = models.ComponentMaster.objects.get(componentid= newest.componentid_id)
         if component.componenttypeid_id == 8 or component.componenttypeid_id == 12 or component.componenttypeid_id == 14 or component.componenttypeid_id == 15:
@@ -273,7 +286,9 @@ def getP_risk(idx):
 def getP_insp(idx):
     data = []
     new = models.RwAssessment.objects.filter(id= idx)
-    if new.count() != 0:
+    newPof = models.RwFullPof.objects.filter(id=idx)
+    newFcof = models.RwFullFcof.objects.filter(id=idx)
+    if new.count() != 0 and newPof.count() != 0 and newFcof.count() != 0:
         newest = new[0]
         equip = models.EquipmentMaster.objects.get(equipmentid= newest.equipmentid_id)
         insp = models.RwDamageMechanism.objects.filter(id_dm= newest.id)

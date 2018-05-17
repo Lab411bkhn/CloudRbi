@@ -2621,8 +2621,9 @@ def ExportExcel(request, index, type):
         return export_data.excelExport(index, type)
     except:
         raise Http404
-def upload(request):
+def upload(request, siteID):
     try:
+        showcontent = "Choose plan process file"
         if request.method =='POST' and request.FILES['myexcelFile']:
             myfile = request.FILES['myexcelFile']
             fs = FileSystemStorage()
@@ -2636,9 +2637,10 @@ def upload(request):
                 pass
     except:
         raise Http404
-    return render(request, 'FacilityUI/equipment/uploadData.html')
-def uploadInspPlan(request):
+    return render(request, 'FacilityUI/facility/uploadData.html', {'siteID': siteID, 'showcontent': showcontent})
+def uploadInspPlan(request, siteID):
     try:
+        showcontent = "Choose inspection history file"
         if request.method == 'POST' and request.FILES['myexcelFile']:
             myfile = request.FILES['myexcelFile']
             fs = FileSystemStorage()
@@ -2653,4 +2655,4 @@ def uploadInspPlan(request):
     except Exception as e:
         print(e)
         raise Http404
-    return render(request, 'FacilityUI/equipment/uploadData.html')
+    return render(request, 'FacilityUI/facility/uploadData.html' ,{'siteID': siteID, 'showcontent': showcontent})

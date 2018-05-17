@@ -1,1 +1,0 @@
-@"E:\CloudRbi\myenv\Scripts\python.exe" "E:\CloudRbi\myenv\Scripts\markdown_py" %*

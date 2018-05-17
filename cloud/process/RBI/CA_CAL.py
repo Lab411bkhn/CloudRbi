@@ -285,38 +285,38 @@ class CA_NORMAL:
         else:
             return (4 * math.log10(DAL_CAL.POSTGRESQL.GET_TBL_3B21(4) * self.mass_n(i)) - 15)
 
-    def a_cont(self, select):
+    def a_cmd(self, select):
         data = DAL_CAL.POSTGRESQL.GET_TBL_58(self.FLUID)
-        a_cont = [0,0,0,0]
+        a_cmd = [0,0,0,0]
         if(self.GET_RELEASE_PHASE() == "Gas"):
-            a_cont[0] = data[0]
-            a_cont[1] = data[4]
-            a_cont[2] = data[8]
-            a_cont[3] = data[12]
+            a_cmd[0] = data[0]
+            a_cmd[1] = data[4]
+            a_cmd[2] = data[8]
+            a_cmd[3] = data[12]
         else:
-            a_cont[0] = data[2]
-            a_cont[1] = data[6]
-            a_cont[2] = data[10]
-            a_cont[3] = data[14]
-        if(a_cont[select - 1] == 0):
+            a_cmd[0] = data[2]
+            a_cmd[1] = data[6]
+            a_cmd[2] = data[10]
+            a_cmd[3] = data[14]
+        if(a_cmd[select - 1] == 0):
             return 1
         else:
-            return a_cont[select - 1]
+            return a_cmd[select - 1]
 
-    def b_cont(self, select):
+    def b_cmd(self, select):
         data = DAL_CAL.POSTGRESQL.GET_TBL_58(self.FLUID)
-        b_cont = [0, 0, 0, 0]
+        b_cmd = [0, 0, 0, 0]
         if(self.GET_RELEASE_PHASE() == "Gas"):
-            b_cont[0] = data[1]
-            b_cont[1] = data[5]
-            b_cont[2] = data[9]
-            b_cont[3] = data[13]
+            b_cmd[0] = data[1]
+            b_cmd[1] = data[5]
+            b_cmd[2] = data[9]
+            b_cmd[3] = data[13]
         else:
-            b_cont[0] = data[3]
-            b_cont[1] = data[7]
-            b_cont[2] = data[11]
-            b_cont[3] = data[15]
-        return b_cont[select - 1]
+            b_cmd[0] = data[3]
+            b_cmd[1] = data[7]
+            b_cmd[2] = data[11]
+            b_cmd[3] = data[15]
+        return b_cmd[select - 1]
 
     def a_inj(self, select):
         data = DAL_CAL.POSTGRESQL.GET_TBL_59(self.FLUID)
@@ -351,15 +351,15 @@ class CA_NORMAL:
     def ca_cmdn_cont(self, select , i):
         API_FLUID_TYPE = self.TYPE_FLUID()
         if((self.GET_RELEASE_PHASE() == "Liquid") and (API_FLUID_TYPE == "TYPE 0")):
-            return min(self.a_cont(select) * pow(self.rate_n(i), self.b_cont(select)), DAL_CAL.POSTGRESQL.GET_TBL_3B21(7)) * (1 - self.fact_mit())
+            return min(self.a_cmd(select) * pow(self.rate_n(i), self.b_cmd(select)), DAL_CAL.POSTGRESQL.GET_TBL_3B21(7)) * (1 - self.fact_mit())
         else:
-            return self.a_cont(select) * pow(self.rate_n(i), self.b_cont(select)) * (1 - self.fact_mit())
+            return self.a_cmd(select) * pow(self.rate_n(i), self.b_cmd(select)) * (1 - self.fact_mit())
 
     def effrate_n(self, select, i):
         API_FLUID_TYPE = self.TYPE_FLUID()
         try:
             if((self.GET_RELEASE_PHASE() == "Liquid") and (API_FLUID_TYPE == "TYPE 0")):
-                return (1 / (DAL_CAL.POSTGRESQL.GET_TBL_3B21(4)) * math.exp(math.log10(self.ca_cmdn_cont(select, i) / (self.a_cont(select) * (DAL_CAL.POSTGRESQL.GET_TBL_3B21(8)))) * pow(self.b_cont(select), -1)))
+                return (1 / (DAL_CAL.POSTGRESQL.GET_TBL_3B21(4)) * math.exp(math.log10(self.ca_cmdn_cont(select, i) / (self.a_cmd(select) * (DAL_CAL.POSTGRESQL.GET_TBL_3B21(8)))) * pow(self.b_cmd(select), -1)))
             else:
                 return self.rate_n(i)
         except:
@@ -371,9 +371,9 @@ class CA_NORMAL:
             if(self.eneff_n(i) == 0):
                 return 0
             else:
-                return min(self.a_cont(select) * pow(self.mass_n(i), self.b_cont(select)), (DAL_CAL.POSTGRESQL.GET_TBL_3B21(7))) * ((1 - self.fact_mit()) / self.eneff_n(i))
+                return min(self.a_cmd(select) * pow(self.mass_n(i), self.b_cmd(select)), (DAL_CAL.POSTGRESQL.GET_TBL_3B21(7))) * ((1 - self.fact_mit()) / self.eneff_n(i))
         else:
-            return self.a_cont(select) * pow(self.mass_n(i), self.b_cont(select)) * (1 - self.fact_mit())
+            return self.a_cmd(select) * pow(self.mass_n(i), self.b_cmd(select)) * (1 - self.fact_mit())
 
     def ca_injn_cont(self, select, i):
         return self.a_inj(select) * pow(self.effrate_n(select, i), self.b_inj(select)) * (1 - self.fact_mit())
@@ -1076,7 +1076,6 @@ class CA_SHELL:
         else:
             return self.fc_cmd() + self.FC_environ_shell() + self.FC_PROD_SHELL()
 
-
 class CA_TANK_BOTTOM:
     def __init__(self, Soil_type, TANK_FLUID, Swg, TANK_DIAMETER, FLUID_HEIGHT, API_COMPONENT_TYPE_NAME, PREVENTION_BARRIER, EnvironSensitivity, MATERIAL_COST, PRODUCTION_COST, P_lvdike,P_onsite,P_offsite):
         self.Soil_type = Soil_type
@@ -1231,6 +1230,7 @@ class CA_TANK_BOTTOM:
             return self.Swg / self.vel_s_prod()
         except:
             return 1
+
     def Bbl_leak_groundwater(self, i):
         try:
             if (self.t_gl_bottom() > self.t_ld_tank_bottom()):
@@ -1340,3 +1340,6 @@ class CA_TANK_BOTTOM:
         else:
             return self.FC_cmd_bottom() + self.FC_environ_bottom() + self.FC_PROD_BOTTOM()
 
+class CA_LEVEL_2:
+    def __init__(self, a):
+        self.a = a
