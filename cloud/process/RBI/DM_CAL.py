@@ -1233,20 +1233,24 @@ class DM_CAL:
         return self.API_ART(ART_CUI)
 
     def DF_CUI(self, age):
-        self.CUI_INSP_EFF = DAL_CAL.POSTGRESQL.GET_MAX_INSP(self.ComponentNumber, self.DM_Name[12])
-        self.CUI_INSP_NUM = DAL_CAL.POSTGRESQL.GET_NUMBER_INSP(self.ComponentNumber, self.DM_Name[12])
-        if (self.CUI_INSP_EFF == "" or self.CUI_INSP_NUM == 0):
-            self.CUI_INSP_EFF = "E"
-        if (self.APIComponentType == "TANKBOTTOM" or self.APIComponentType == "TANKROOFFLOAT"):
-            if (self.NomalThick == 0 or self.CurrentThick == 0):
-                return 1390
+        if (self.EXTERNAL_EXPOSED_FLUID_MIST or (
+                    self.CARBON_ALLOY and not (self.MAX_OP_TEMP < -12 or self.MIN_OP_TEMP > 177))):
+            self.CUI_INSP_EFF = DAL_CAL.POSTGRESQL.GET_MAX_INSP(self.ComponentNumber, self.DM_Name[12])
+            self.CUI_INSP_NUM = DAL_CAL.POSTGRESQL.GET_NUMBER_INSP(self.ComponentNumber, self.DM_Name[12])
+            if (self.CUI_INSP_EFF == "" or self.CUI_INSP_NUM == 0):
+                self.CUI_INSP_EFF = "E"
+            if (self.APIComponentType == "TANKBOTTOM" or self.APIComponentType == "TANKROOFFLOAT"):
+                if (self.NomalThick == 0 or self.CurrentThick == 0):
+                    return 1390
+                else:
+                    return DAL_CAL.POSTGRESQL.GET_TBL_512(self.API_ART_CUI(age), self.CUI_INSP_EFF)
             else:
-                return DAL_CAL.POSTGRESQL.GET_TBL_512(self.API_ART_CUI(age), self.CUI_INSP_EFF)
+                if (self.NomalThick == 0 or self.CurrentThick == 0):
+                    return 1900
+                else:
+                    return DAL_CAL.POSTGRESQL.GET_TBL_511(self.API_ART_CUI(age), self.CUI_INSP_NUM, self.CUI_INSP_EFF)
         else:
-            if (self.NomalThick == 0 or self.CurrentThick == 0):
-                return 1900
-            else:
-                return DAL_CAL.POSTGRESQL.GET_TBL_511(self.API_ART_CUI(age), self.CUI_INSP_NUM, self.CUI_INSP_EFF)
+            return 0
 
     # cal EXTERNAL CLSCC
     def CLSCC_SUSCEP(self):
