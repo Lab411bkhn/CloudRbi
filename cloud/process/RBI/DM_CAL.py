@@ -10,6 +10,7 @@ from pathlib import _Selector
 from cloud.process.RBI import Postgresql as DAL_CAL
 
 
+# nhung gia tri Num_inspec, EFF khong can truyen khi su dung ham
 class DM_CAL:
     # ham khoi tao
     def __init__(self,ComponentNumber = "",Commissiondate = datetime.now(), AssessmentDate = datetime.now(), APIComponentType="",
@@ -1518,7 +1519,7 @@ class DM_CAL:
 
     def DF_HTHA(self, age):
         if (self.MATERIAL_SUSCEP_HTHA):
-            if (self.CRITICAL_TEMP <= 204 and self.HTHA_PRESSURE <= 0.552):
+            if (self.MAX_OP_TEMP <= 204 and self.HTHA_PRESSURE <= 0.552):
                 return 1
             else:
                 return self.API_DF_HTHA(age)
