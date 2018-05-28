@@ -435,8 +435,8 @@ class DM_CAL:
                 SUSCEP_LINNING = "WithinLast6Years"
             else:
                 SUSCEP_LINNING = "MoreThan6Years"
-            YEAR_IN_SERVICE = int(self.GET_AGE()[1])
-            return DAL_CAL.POSTGRESQL.GET_TBL_65(YEAR_IN_SERVICE, SUSCEP_LINNING)
+            #YEAR_IN_SERVICE = self.GET_AGE_INSERVICE()
+            return DAL_CAL.POSTGRESQL.GET_TBL_65(int(age), SUSCEP_LINNING)
         else:
             return DAL_CAL.POSTGRESQL.GET_TBL_64(int(round(age)), self.LinningType)
 
@@ -1827,6 +1827,8 @@ class DM_CAL:
 
 
     ##################################################################################
+    def GET_AGE_INSERVICE(self):
+        return int((self.AssesmentDate.date() - self.CommissionDate.date()).days/365)
 
     def GET_AGE(self):
         age = np.zeros(14)

@@ -890,7 +890,7 @@ class Tbl64DmLinningInorganic(models.Model):
     castable_refractory_severe_condition = models.IntegerField(db_column='Castable refractory severe condition', blank=True, null=True)  # Field name made lowercase. Field renamed to remove unsuitable characters.
     glass_lined = models.IntegerField(db_column='Glass lined', blank=True, null=True)  # Field name made lowercase. Field renamed to remove unsuitable characters.
     acid_brick = models.IntegerField(db_column='Acid Brick', blank=True, null=True)  # Field name made lowercase. Field renamed to remove unsuitable characters.
-    fibreglass = models.IntegerField(db_column='Fibreglass', blank=True, null=True)  # Field name made lowercase.
+    fiberglass = models.IntegerField(db_column='Fiberglass', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = False

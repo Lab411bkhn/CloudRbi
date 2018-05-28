@@ -1341,5 +1341,10 @@ class CA_TANK_BOTTOM:
             return self.FC_cmd_bottom() + self.FC_environ_bottom() + self.FC_PROD_BOTTOM()
 
 class CA_LEVEL_2:
-    def __init__(self, a):
-        self.a = a
+    def __init__(self, FLUID = "", MATERIAL_COST=0, FLUID_PHASE = "Vapor", API_COMPONENT_TYPE_NAME ="" , POOL_FIRE_TYPE ="",
+                 EQUIPMENT_COST = 0, FRAC_LIQUID = 0, FRAC_FLASH = 0, STORED_PRESSURE = 0, ATM_PRESSURE = 101, SATURATION_PRESSURE = 0,
+                 STORED_TEMP = 0, BUBBLE_TEMP = 0, DEWPOINT_TEMP = 0, ATM_TEMP = 0, SPECIFIC_HEAT_POOL = 0, RENOY_NUMBER = 0,
+                 MASS_INVERT = 0, MASS_COMP = 0, MASS_VCE = 0, DETECTION_TYPE = '', ISOLATION_TYPE = '',FLAMMABLE_PERCENT = 0,
+                 VOLUME_FIRE_POOL = 0, BUBBLE_GROUND_PRESSURE = 0, WIND_SPEED = 0, SURFACE_TYPE = '', GROUND_TEMP = 0, AMBIENT_CONDITION = '',
+                 HUMIDITY = 0, MOLE_FRAC_TOXIC = 0, ):
+        return self

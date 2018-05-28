@@ -173,7 +173,7 @@ class POSTGRESQL:
         elif Suscep == "Acid Brick":
             return tbl_64.acid_brick
         else:
-            return tbl_64.fibreglass
+            return tbl_64.fiberglass
 
     def GET_TBL_65(YEAR, Suscep):
         if YEAR < 1:

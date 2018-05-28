@@ -26,3 +26,7 @@
 *** Thư mục WebUI ************************:
 - Thư mục này chỉ chứa những file xử lý các kết quả làm tròn trên form hoặc các giá trị quy đổi trong giao diện( không quá quan trọng).
 *****************************************************************************
+
+*chú ý Trường hợp lining: nên có thêm 1 biến xác định chu kỳ kiểm tra vỏ cho vỏ là hữu cơ.
+
+*********************************************************************************
