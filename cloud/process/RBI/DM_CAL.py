@@ -458,8 +458,10 @@ class DM_CAL:
             return 0
 
     # Calculate Caustic:
+
     def plotinArea(self):
-        if (self.MAX_OP_TEMP < 80):
+        TempBase = -0.6*self.NaOHConcentration + 80
+        if (self.MIN_OP_TEMP < TempBase):
             k = 'A'
         else:
             k = 'B'
