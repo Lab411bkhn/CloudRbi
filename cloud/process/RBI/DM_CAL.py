@@ -506,7 +506,7 @@ class DM_CAL:
         return sev
 
     def DF_CAUSTIC(self, age):
-        if (self.CARBON_ALLOY):
+        if (self.CARBON_ALLOY and self.NaOHConcentration != 0):
             self.CAUSTIC_INSP_EFF = DAL_CAL.POSTGRESQL.GET_MAX_INSP(self.ComponentNumber, self.DM_Name[2])
             self.CACBONATE_INSP_NUM = DAL_CAL.POSTGRESQL.GET_NUMBER_INSP(self.ComponentNumber, self.DM_Name[2])
             if (self.CAUSTIC_INSP_EFF == "E" or self.CAUSTIC_INSP_NUM == 0):

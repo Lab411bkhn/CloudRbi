@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cabab71a-8481-4181-86d9-840fbd700d74" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cloud/process/RBI/DM_CAL.py" afterPath="$PROJECT_DIR$/cloud/process/RBI/DM_CAL.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -37,7 +36,7 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/cloud/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
+            <state relative-caret-position="0">
               <caret line="22" column="57" lean-forward="false" selection-start-line="22" selection-start-column="46" selection-end-line="22" selection-end-column="57" />
               <folding>
                 <element signature="e#2094#3383#0" expanded="false" />
@@ -85,8 +84,8 @@
       <file leaf-file-name="DM_CAL.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/cloud/process/RBI/DM_CAL.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1">
-              <caret line="480" column="32" lean-forward="false" selection-start-line="480" selection-start-column="32" selection-end-line="480" selection-end-column="32" />
+            <state relative-caret-position="-1845">
+              <caret line="446" column="54" lean-forward="true" selection-start-line="446" selection-start-column="54" selection-end-line="446" selection-end-column="54" />
               <folding />
             </state>
           </provider>
@@ -144,16 +143,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Postgresql.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/cloud/process/RBI/Postgresql.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2941">
-              <caret line="174" column="13" lean-forward="false" selection-start-line="174" selection-start-column="13" selection-end-line="174" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
@@ -166,8 +155,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>data['minOP']</find>
-      <find>NoINSP_THINNING</find>
       <find>age_coa</find>
       <find>EXTERN_COATING</find>
       <find>rwcoat.externalcoating</find>
@@ -196,6 +183,8 @@
       <find>fibre</find>
       <find>GET_AG</find>
       <find>YEAR_IN_SERVICE</find>
+      <find>acid</find>
+      <find>treat</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -304,6 +293,13 @@
               <item name="CloudRbi" type="462c0819:PsiDirectoryNode" />
               <item name="cloud" type="462c0819:PsiDirectoryNode" />
               <item name="process" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CloudRbi" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CloudRbi" type="462c0819:PsiDirectoryNode" />
+              <item name="cloud" type="462c0819:PsiDirectoryNode" />
+              <item name="process" type="462c0819:PsiDirectoryNode" />
+              <item name="RBI" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="CloudRbi" type="b2602c69:ProjectViewProjectNode" />
@@ -787,7 +783,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/cloud/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
+        <state relative-caret-position="0">
           <caret line="22" column="57" lean-forward="false" selection-start-line="22" selection-start-column="46" selection-end-line="22" selection-end-column="57" />
           <folding>
             <element signature="e#2094#3383#0" expanded="false" />
@@ -866,14 +862,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cloud/process/RBI/Postgresql.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2941">
-          <caret line="174" column="13" lean-forward="false" selection-start-line="174" selection-start-column="13" selection-end-line="174" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/cloud/process/RBI/fastCalulate.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="6392">
@@ -897,6 +885,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/cloud/process/RBI/Postgresql.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-901">
+          <caret line="174" column="13" lean-forward="false" selection-start-line="174" selection-start-column="13" selection-end-line="174" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/cloud/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
@@ -909,8 +905,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/cloud/process/RBI/DM_CAL.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1">
-          <caret line="480" column="32" lean-forward="false" selection-start-line="480" selection-start-column="32" selection-end-line="480" selection-end-column="32" />
+        <state relative-caret-position="-1845">
+          <caret line="446" column="54" lean-forward="true" selection-start-line="446" selection-start-column="54" selection-end-line="446" selection-end-column="54" />
           <folding />
         </state>
       </provider>
